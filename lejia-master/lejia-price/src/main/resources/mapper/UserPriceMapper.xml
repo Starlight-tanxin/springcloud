@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wm.lejia.db.mapper.UserPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.pojo.entity.UserPrice" >
+    <id column="user_price_id" property="userPriceId" jdbcType="INTEGER" />
+    <result column="region" property="region" jdbcType="CHAR" />
+    <result column="decoration_word" property="decorationWord" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="CHAR" />
+    <result column="decoration_name" property="decorationName" jdbcType="VARCHAR" />
+    <result column="num_str" property="numStr" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="unit_price" property="unitPrice" jdbcType="DOUBLE" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+    <result column="total_price_id" property="totalPriceId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_price_id, region, decoration_word, unit, decoration_name, num_str, price, unit_price, 
+    created_by, created_time, is_deleted, total_price_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_price
+    where user_price_id = #{userPriceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_price
+    where user_price_id = #{userPriceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wm.lejia.pojo.entity.UserPrice" >
+    insert into user_price (user_price_id, region, decoration_word, 
+      unit, decoration_name, num_str, 
+      price, unit_price, created_by, 
+      created_time, is_deleted, total_price_id
+      )
+    values (#{userPriceId,jdbcType=INTEGER}, #{region,jdbcType=CHAR}, #{decorationWord,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=CHAR}, #{decorationName,jdbcType=VARCHAR}, #{numStr,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{unitPrice,jdbcType=DOUBLE}, #{createdBy,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=INTEGER}, #{totalPriceId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.UserPrice" >
+    insert into user_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userPriceId != null" >
+        user_price_id,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="decorationWord != null" >
+        decoration_word,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="decorationName != null" >
+        decoration_name,
+      </if>
+      <if test="numStr != null" >
+        num_str,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="totalPriceId != null" >
+        total_price_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userPriceId != null" >
+        #{userPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=CHAR},
+      </if>
+      <if test="decorationWord != null" >
+        #{decorationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=CHAR},
+      </if>
+      <if test="decorationName != null" >
+        #{decorationName,jdbcType=VARCHAR},
+      </if>
+      <if test="numStr != null" >
+        #{numStr,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="totalPriceId != null" >
+        #{totalPriceId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.pojo.entity.UserPrice" >
+    update user_price
+    <set >
+      <if test="region != null" >
+        region = #{region,jdbcType=CHAR},
+      </if>
+      <if test="decorationWord != null" >
+        decoration_word = #{decorationWord,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=CHAR},
+      </if>
+      <if test="decorationName != null" >
+        decoration_name = #{decorationName,jdbcType=VARCHAR},
+      </if>
+      <if test="numStr != null" >
+        num_str = #{numStr,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="totalPriceId != null" >
+        total_price_id = #{totalPriceId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_price_id = #{userPriceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.pojo.entity.UserPrice" >
+    update user_price
+    set region = #{region,jdbcType=CHAR},
+      decoration_word = #{decorationWord,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=CHAR},
+      decoration_name = #{decorationName,jdbcType=VARCHAR},
+      num_str = #{numStr,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      unit_price = #{unitPrice,jdbcType=DOUBLE},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      total_price_id = #{totalPriceId,jdbcType=INTEGER}
+    where user_price_id = #{userPriceId,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="insertBatchPrice" parameterType="java.util.List">
+  	insert into user_price ( region, decoration_word, unit, decoration_name, num_str,
+  	price, unit_price, created_by, created_time, total_price_id )
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+	    (#{item.region,jdbcType=CHAR}, #{item.decorationWord,jdbcType=VARCHAR}, 
+	      #{item.unit,jdbcType=CHAR}, #{item.decorationName,jdbcType=VARCHAR}, #{item.numStr,jdbcType=VARCHAR}, 
+	      #{item.price,jdbcType=DOUBLE}, #{item.unitPrice,jdbcType=DOUBLE}, #{item.createdBy,jdbcType=INTEGER}, 
+	      NOW(), #{item.totalPriceId,jdbcType=INTEGER} )
+    </foreach>
+  </insert>
+</mapper>

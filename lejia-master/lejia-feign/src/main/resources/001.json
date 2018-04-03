@@ -1,0 +1,50 @@
+[
+	{
+		"decorationId": 7,
+		"homeDetailType": "客厅",
+		"homeId": "undefined",
+		"createdBy": "undefined"
+	},
+	{
+		"decorationId": 7,
+		"homeDetailType": "房间",
+		"homeId": "undefined",
+		"createdBy": "undefined"
+	},
+	{
+		"decorationId": 8,
+		"homeDetailType": "客厅",
+		"homeId": "undefined",
+		"createdBy": "undefined"
+	},
+	{
+		"decorationId": 8,
+		"homeDetailType": "餐厅",
+		"homeId": "undefined",
+		"createdBy": "undefined"
+	},
+	{
+		"decorationId": 9,
+		"homeDetailType": "客厅",
+		"homeId": "undefined",
+		"createdBy": "undefined"
+	},
+	{
+		"decorationId": 5,
+		"homeDetailType": "客厅",
+		"homeId": "undefined",
+		"createdBy": "undefined"
+	},
+	{
+		"decorationId": 6,
+		"homeDetailType": "餐厅",
+		"homeId": "undefined",
+		"createdBy": "undefined"
+	},
+	{
+		"decorationId": 6,
+		"homeDetailType": "房间",
+		"homeId": "undefined",
+		"createdBy": "undefined"
+	}
+]

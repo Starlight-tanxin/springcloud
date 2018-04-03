@@ -1,0 +1,7 @@
+/target/
+
+.calsspath
+*.calss
+.project
+*.log
+*.prefs

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wm.lejia.db.mapper.ProvinceMapper" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.pojo.entity.Province" >
+    <id column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    province_id, province_name, area, province_code, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from province
+    where province_id = #{provinceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from province
+    where province_id = #{provinceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wm.lejia.pojo.entity.Province" >
+    insert into province (province_id, province_name, area, 
+      province_code, is_deleted)
+    values (#{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.Province" >
+    insert into province
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.pojo.entity.Province" >
+    update province
+    <set >
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where province_id = #{provinceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.pojo.entity.Province" >
+    update province
+    set province_name = #{provinceName,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=INTEGER}
+    where province_id = #{provinceId,jdbcType=INTEGER}
+  </update>
+</mapper>

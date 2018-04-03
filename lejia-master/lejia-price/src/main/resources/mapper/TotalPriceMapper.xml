@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wm.lejia.db.mapper.TotalPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.pojo.entity.TotalPrice" >
+    <id column="total_price_id" property="totalPriceId" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="DOUBLE" />
+    <result column="unit_total" property="unitTotal" jdbcType="DOUBLE" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    total_price_id, created_time, created_by, total, unit_total, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from total_price
+    where total_price_id = #{totalPriceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from total_price
+    where total_price_id = #{totalPriceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wm.lejia.pojo.entity.TotalPrice" >
+    insert into total_price (total_price_id, created_time, created_by, 
+      total, unit_total, user_id
+      )
+    values (#{totalPriceId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, 
+      #{total,jdbcType=DOUBLE}, #{unitTotal,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.TotalPrice" >
+    <selectKey keyColumn="total_price_id" keyProperty="totalPriceId" order="AFTER" resultType="java.lang.Integer">
+  		SELECT LAST_INSERT_ID()
+  	</selectKey>
+    insert into total_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="totalPriceId != null" >
+        total_price_id,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="total != null" >
+        `total`,
+      </if>
+      <if test="unitTotal != null" >
+        `unit_total`,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="totalPriceId != null" >
+        #{totalPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=DOUBLE},
+      </if>
+      <if test="unitTotal != null" >
+        #{unitTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.pojo.entity.TotalPrice" >
+    update total_price
+    <set >
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=DOUBLE},
+      </if>
+      <if test="unitTotal != null" >
+        unit_total = #{unitTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where total_price_id = #{totalPriceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.pojo.entity.TotalPrice" >
+    update total_price
+    set created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      total = #{total,jdbcType=DOUBLE},
+      unit_total = #{unitTotal,jdbcType=DOUBLE},
+      user_id = #{userId,jdbcType=INTEGER}
+    where total_price_id = #{totalPriceId,jdbcType=INTEGER}
+  </update>
+</mapper>
