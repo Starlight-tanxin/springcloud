@@ -51,4 +51,6 @@ public class Constants {
 	public static final String DIAO_DING = "吊顶";
 	
 	public static final String ZHAO_PING = "地面找平";
+	
+	public static final String XIANG_TIE = "瓷砖镶贴";
 }

@@ -27,7 +27,7 @@ import com.wm.lejia.utils.ResultCode;
 import com.wm.lejia.utils.StringUtils;
 
 @RestController
-@RequestMapping("/api/mobile")
+@RequestMapping("/lejia/mobile")
 public class MobileController {
 	
 	private static Logger log = LoggerFactory.getLogger(MobileController.class);

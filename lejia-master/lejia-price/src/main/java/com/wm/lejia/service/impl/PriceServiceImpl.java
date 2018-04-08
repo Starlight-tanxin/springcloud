@@ -44,9 +44,6 @@ public class PriceServiceImpl implements PriceService {
 	@Autowired
 	private DecorationPriceMapper decorationPriceMapper;
 
-//	@Autowired
-//	private DecorationMapper decorationMapper;
-	
 	@Autowired
 	private TotalPriceMapper totalPriceMapper;
 	
@@ -113,12 +110,13 @@ public class PriceServiceImpl implements PriceService {
 		// 算法 E27
 		Integer zhaoPing = livingRoomNum * 2 + restaurantNum;
 		// 算法 网站E32  墙面材质 算法
-	 	Integer qiang = (livingRoomNum * 2 + restaurantNum) / 3;
-	 	if(((livingRoomNum * 2 + restaurantNum) % 3) > 0) {
-	 		qiang += 1;
-	 	}
-	 	// 算法 网站 E47  瓷砖镶钻 卫生间 1 *  toiletNum
-		// 省 市
+	 	Double qiang = new BigDecimal((double) (livingRoomNum * 2 + restaurantNum) / 3).setScale(2, RoundingMode.UP).doubleValue();
+	 	// 算法 网站 E47  瓷砖镶钻 卫生间 1 *  toiletNum  
+	 	//算法E50 + E51+ E52
+	 	Integer homeId = dto.getHomeId();
+	 	Integer kitchenSelectedNum = homeDetailMapper.countDetailNumByHome(homeId, Constants.CHU_FANG);
+		kitchenSelectedNum = (kitchenSelectedNum == null ? 0 : kitchenSelectedNum);
+	 	// 省 市
 		Integer provinceId = dto.getProvinceId();
 		Integer cityId = dto.getCityId();
 		List<HomeDetail> details = dto.getDetails();
@@ -129,11 +127,7 @@ public class PriceServiceImpl implements PriceService {
 		List<PriceVO> priceVOList = new ArrayList<>();
 		Double sumPrice = 0.00d;
 		Double unitSumPrice = 0.00d; 
-//		Set<Integer> deIdSet = new HashSet<>();
-//		for (HomeDetail detail : details) {
-//			deIdSet.add((detail.getDecorationId() == null ? 0 : detail.getDecorationId()));
-//		}
-//		List<Decoration> decorationList = decorationMapper.listDecorationWordAndNameAndUnint(deIdSet);
+		// 计算价格
 		for (HomeDetail detail : details) {
 			log.info("detail" + detail.toString());
 			// 装修区域
@@ -153,14 +147,7 @@ public class PriceServiceImpl implements PriceService {
 				Double materialUnionPrice = decorationPrice.getMaterialUnionPrice();
 				// 测算材料价格
 				Double materialCalculatePrice = decorationPrice.getMaterialCalculatePrice();
-//				Decoration d = decorationMapper.getDecorationWordAndNameAndUnint(decorationId);
-//				if (d == null) {
-//					continue;
-//				}
 				String word = decorationPrice.getDecorationWord();
-				word = (StringUtils.isEmptyStr(word) ? "" : word);
-				//Integer deId = d.getDecorationId();
-				//deId = (deId == null ? 0 : deId);
 				if (homeDetailType.equals(region) && decorationId.equals(dPriceId)) {
 					if (homeDetailType.equals(Constants.QUAN_WU)) {
 						Double price = 0.00d;
@@ -207,7 +194,11 @@ public class PriceServiceImpl implements PriceService {
 							price = zhaoPing * laborCalculatePrice + zhaoPing * materialCalculatePrice;
 							unitPrice = zhaoPing * laborUnitPrice + zhaoPing * materialUnionPrice;
 							numStr = zhaoPing.toString();
-						} else{
+						} else if (Constants.XIANG_TIE.equals(word)) { // 客厅平铺
+							price = 1 * laborCalculatePrice + 1 * materialCalculatePrice;
+							unitPrice = 1 * laborUnitPrice + 1 * materialUnionPrice;
+							numStr = "1";
+						} else {
 							price = livingRoomNum * laborCalculatePrice + livingRoomNum * materialCalculatePrice;
 							unitPrice = livingRoomNum * laborUnitPrice + livingRoomNum * materialUnionPrice;
 							numStr = livingRoomNum.toString();
@@ -219,28 +210,11 @@ public class PriceServiceImpl implements PriceService {
 						unitSumPrice += unitPrice;
 						continue;
 					}
-				/*	if (homeDetailType.equals(Constants.GUO_DAO)) {
-						Double price = 0.00d;
-						String numStr = "";
-						if (d.getDecorationId().equals(14)) { // 墙面平铺 
-							price = qiang * laborCalculatePrice + qiang * materialCalculatePrice;
-							numStr = qiang.toString();
-						} else if (Constants.ZHAO_PING.equals(word)) {  // 找平
-							price = zhaoPing * laborCalculatePrice + zhaoPing * materialCalculatePrice;
-							numStr = zhaoPing.toString();
-						} else{
-							price = livingRoomNum * laborCalculatePrice + livingRoomNum * materialCalculatePrice;
-							numStr = livingRoomNum.toString();
-						}
-						priceVOList.add(createVO(d, region, numStr, price));
-						sumPrice += price;
-						continue;
-					}*/
 					if (homeDetailType.equals(Constants.CAN_TING)) {
 						Double price = 0.00d;
 						Double unitPrice = 0.00d;
 						String numStr = "";
-						if (dPriceId.equals(14)) { // 墙面平铺 
+						if (dPriceId.equals(14)) { // 墙面平铺  
 							price = qiang * laborCalculatePrice + qiang * materialCalculatePrice;
 							unitPrice = qiang * laborUnitPrice + qiang * materialUnionPrice;
 							numStr = qiang.toString();
@@ -248,7 +222,11 @@ public class PriceServiceImpl implements PriceService {
 							price = zhaoPing * laborCalculatePrice + zhaoPing * materialCalculatePrice;
 							unitPrice = zhaoPing * laborUnitPrice + zhaoPing * materialUnionPrice;
 							numStr = zhaoPing.toString();
-						} else{
+						}  else if (Constants.XIANG_TIE.equals(word)) { // 瓷砖镶贴
+							price = 1 * laborCalculatePrice + 1 * materialCalculatePrice;
+							unitPrice = 1 * laborUnitPrice + 1 * materialUnionPrice;
+							numStr = "1";
+						}else{
 							price = restaurantNum * laborCalculatePrice + restaurantNum * materialCalculatePrice;
 							unitPrice = restaurantNum * laborUnitPrice + restaurantNum * materialUnionPrice;
 							numStr = restaurantNum.toString();
@@ -280,11 +258,21 @@ public class PriceServiceImpl implements PriceService {
 						continue;
 					}
 					if (homeDetailType.equals(Constants.CHU_FANG)) {
-						Double price = kitchenNum * laborCalculatePrice + kitchenNum * materialCalculatePrice;
-						Double unitPrice = kitchenNum * laborUnitPrice + kitchenNum * materialUnionPrice;
+						Double price = 0.00d;
+						Double unitPrice = 0.00d;
+						String numStr = "";
+						if (dPriceId.equals(27)) {
+							price = kitchenSelectedNum * laborCalculatePrice + kitchenSelectedNum * materialCalculatePrice;
+							unitPrice = kitchenSelectedNum * laborUnitPrice + kitchenSelectedNum * materialUnionPrice;
+							numStr = kitchenSelectedNum.toString();
+						} else {
+							price = kitchenNum * laborCalculatePrice + kitchenNum * materialCalculatePrice;
+							unitPrice = kitchenNum * laborUnitPrice + kitchenNum * materialUnionPrice;
+							numStr = kitchenNum.toString();
+						}
 						price = new BigDecimal(price).setScale(2, RoundingMode.HALF_UP).doubleValue();
 						unitPrice = new BigDecimal(unitPrice).setScale(2, RoundingMode.HALF_UP).doubleValue();
-						priceVOList.add(createVO(decorationPrice, region, kitchenNum.toString(), price, unitPrice));
+						priceVOList.add(createVO(decorationPrice, region, numStr, price, unitPrice));
 						sumPrice += price;
 						unitSumPrice += unitPrice;
 						continue;

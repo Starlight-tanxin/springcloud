@@ -133,7 +133,11 @@ public class ServiceUtils {
 			details.add(dian);
 		}
 		HomeDetailDTO kaiCao = new HomeDetailDTO(homeId, Constants.QUAN_WU, null, 1, createdBy);
+		HomeDetailDTO daKong = new HomeDetailDTO(homeId, Constants.QUAN_WU, null, 4, createdBy);
+		HomeDetailDTO yunFei = new HomeDetailDTO(homeId, Constants.QUAN_WU, null, 5, createdBy);
 		details.add(kaiCao);
+		details.add(daKong);
+		details.add(yunFei);
 		for (int i = (details.size()-1) ; i >= 0 ; i --) {
 			HomeDetailDTO detail = details.get(i);
 			// 选项名字
