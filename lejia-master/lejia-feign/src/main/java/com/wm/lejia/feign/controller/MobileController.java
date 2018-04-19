@@ -151,4 +151,9 @@ public class MobileController {
 		Result<List<UserPrice>> listPriceItemResult = priceFeignClient.listPriceItem(totalPriceId);
 		return listPriceItemResult;
 	}
+	
+	@PostMapping("/getProvinceAndCity")
+	public Result<?> getProvinceAndCity(){
+		return priceFeignClient.getProvinceAndCity();
+	}
 }

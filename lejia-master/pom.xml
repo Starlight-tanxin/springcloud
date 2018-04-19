@@ -8,7 +8,7 @@
 
 	<modules>
 		<module>lejia-eureka</module>
-		<module>lejia-utils</module>
+		<module>lejia-common</module>
 		<module>lejia-price</module>
 		<module>lejia-feign</module>
 	</modules>

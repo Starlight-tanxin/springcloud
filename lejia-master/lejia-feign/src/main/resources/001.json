@@ -1,50 +1,30 @@
 [
 	{
+		"info": "椭圆顶、九宫格顶等造型顶（默认带窗帘盒）轻钢龙骨，双层石膏板。如图(多选)",
 		"decorationId": 7,
 		"homeDetailType": "客厅",
-		"homeId": "undefined",
-		"createdBy": "undefined"
+		"homeId": "124",
+		"createdBy": "1"
 	},
 	{
+		"info": "椭圆顶、九宫格顶等造型顶（默认带窗帘盒）轻钢龙骨，双层石膏板。如图(多选)",
 		"decorationId": 7,
 		"homeDetailType": "房间",
-		"homeId": "undefined",
-		"createdBy": "undefined"
+		"homeId": "124",
+		"createdBy": "1"
 	},
 	{
-		"decorationId": 8,
-		"homeDetailType": "客厅",
-		"homeId": "undefined",
-		"createdBy": "undefined"
-	},
-	{
-		"decorationId": 8,
-		"homeDetailType": "餐厅",
-		"homeId": "undefined",
-		"createdBy": "undefined"
-	},
-	{
-		"decorationId": 9,
-		"homeDetailType": "客厅",
-		"homeId": "undefined",
-		"createdBy": "undefined"
-	},
-	{
-		"decorationId": 5,
-		"homeDetailType": "客厅",
-		"homeId": "undefined",
-		"createdBy": "undefined"
-	},
-	{
-		"decorationId": 6,
-		"homeDetailType": "餐厅",
-		"homeId": "undefined",
-		"createdBy": "undefined"
-	},
-	{
-		"decorationId": 6,
+		"info": "走边线",
+		"decorationId": 0,
 		"homeDetailType": "房间",
-		"homeId": "undefined",
-		"createdBy": "undefined"
+		"homeId": "124",
+		"createdBy": "1"
+	},
+	{
+		"info": "小砖贴或菱形贴",
+		"decorationId": 0,
+		"homeDetailType": "卫生间",
+		"homeId": "124",
+		"createdBy": "1"
 	}
 ]

@@ -28,6 +28,9 @@
       #{provinceCode,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.Province" >
+    <selectKey keyColumn="province_id" keyProperty="provinceId" order="AFTER" resultType="java.lang.Integer">
+    	SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into province
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="provinceId != null" >

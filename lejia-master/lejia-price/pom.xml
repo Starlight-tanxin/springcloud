@@ -39,7 +39,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.wm</groupId>
-			<artifactId>lejia-utils</artifactId>
+			<artifactId>lejia-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

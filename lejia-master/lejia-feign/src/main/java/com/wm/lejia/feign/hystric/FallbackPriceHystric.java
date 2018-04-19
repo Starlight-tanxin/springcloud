@@ -11,9 +11,12 @@ import com.wm.lejia.feign.pojo.dto.HomeDetailDTO;
 import com.wm.lejia.feign.pojo.dto.PriceDTO;
 import com.wm.lejia.feign.pojo.dto.TotalPriceDTO;
 import com.wm.lejia.feign.pojo.dto.UserDTO;
+import com.wm.lejia.feign.pojo.model.City;
+import com.wm.lejia.feign.pojo.model.Province;
 import com.wm.lejia.feign.pojo.model.TotalPrice;
 import com.wm.lejia.feign.pojo.model.User;
 import com.wm.lejia.feign.pojo.model.UserPrice;
+import com.wm.lejia.feign.pojo.vo.ProvinceVO;
 import com.wm.lejia.utils.Result;
 import com.wm.lejia.utils.ResultCode;
 
@@ -72,8 +75,22 @@ public class FallbackPriceHystric implements PriceFeignClient{
 
 	@Override
 	public Result<User> getUserByWechatOpenid(String wechatOpenid) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Result<>(ResultCode.BAD_REQUEST);
+	}
+
+	@Override
+	public Result<List<ProvinceVO>> getProvinceAndCity() {
+		return new Result<>(ResultCode.BAD_REQUEST);
+	}
+
+	@Override
+	public Result<Province> createProvince(Province province) {
+		return new Result<>(ResultCode.BAD_REQUEST);
+	}
+
+	@Override
+	public Result<City> createCity(City city) {
+		return new Result<>(ResultCode.BAD_REQUEST);
 	}
 
 	

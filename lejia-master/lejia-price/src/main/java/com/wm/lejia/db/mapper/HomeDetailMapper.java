@@ -18,6 +18,6 @@ public interface HomeDetailMapper {
 
     int updateByPrimaryKey(HomeDetail record);
     
-    @Select("SELECT COUNT(*) FROM home_detail WHERE home_id = #{homeId} AND home_detail_type = #{detail} ")
+    @Select("SELECT COUNT(*) FROM home_detail WHERE home_id = #{homeId} AND home_detail_type = #{detail} AND decoration_id != 27")
     Integer countDetailNumByHome(@Param("homeId")Integer homeId,@Param("detail")String detail);
 }

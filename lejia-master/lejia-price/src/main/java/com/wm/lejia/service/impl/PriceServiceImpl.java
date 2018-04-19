@@ -116,6 +116,7 @@ public class PriceServiceImpl implements PriceService {
 	 	Integer homeId = dto.getHomeId();
 	 	Integer kitchenSelectedNum = homeDetailMapper.countDetailNumByHome(homeId, Constants.CHU_FANG);
 		kitchenSelectedNum = (kitchenSelectedNum == null ? 0 : kitchenSelectedNum);
+		kitchenSelectedNum = kitchenSelectedNum * kitchenNum;
 	 	// 省 市
 		Integer provinceId = dto.getProvinceId();
 		Integer cityId = dto.getCityId();

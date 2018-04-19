@@ -15,8 +15,12 @@ import com.wm.lejia.feign.pojo.dto.HomeDetailDTO;
 import com.wm.lejia.feign.pojo.dto.PriceDTO;
 import com.wm.lejia.feign.pojo.dto.TotalPriceDTO;
 import com.wm.lejia.feign.pojo.dto.UserDTO;
+import com.wm.lejia.feign.pojo.model.City;
+import com.wm.lejia.feign.pojo.model.Province;
 import com.wm.lejia.feign.pojo.model.TotalPrice;
 import com.wm.lejia.feign.pojo.model.User;
+import com.wm.lejia.feign.pojo.vo.ProvinceVO;
+
 import com.wm.lejia.utils.Result;
 
 @FeignClient(name = "service-price", configuration = FeignConfig.class, fallback = FallbackPriceHystric.class)
@@ -54,4 +58,13 @@ public interface PriceFeignClient {
 
 	@PostMapping(value = "/user/getUserByWechatOpenid")
 	Result<User> getUserByWechatOpenid(@RequestParam(value = "wechatOpenid") String wechatOpenid);
+	
+	@PostMapping(value = "/city/getProvinceAndCity")
+	Result<List<ProvinceVO>> getProvinceAndCity();
+	
+	@PostMapping(value = "/city/createProvince", consumes = "application/json")
+	Result<Province> createProvince(@RequestBody Province province);
+	
+	@PostMapping(value = "/city/createCity", consumes = "application/json")
+	Result<City> createCity(@RequestBody City city);
 }

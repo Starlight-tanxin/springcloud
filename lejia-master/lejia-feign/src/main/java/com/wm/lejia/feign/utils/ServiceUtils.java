@@ -24,7 +24,6 @@ public class ServiceUtils {
 				case Constants.CAN_TING : return 11;
 				case Constants.FANG_JIAN : return 11;
 				case Constants.GUO_DAO : return 11;
-				case Constants.YANG_TAI : return 31;
 				case Constants.KE_CAN_TING : return 11;
 			}
 			break;
@@ -45,7 +44,7 @@ public class ServiceUtils {
 				case Constants.WEI_SHEN_JIAN : return 30;
 				case Constants.KE_TING : return 13;
 				case Constants.CAN_TING : return 13;
-				case Constants.FANG_JIAN : return 13;
+				//case Constants.FANG_JIAN : return 13;
 				case Constants.GUO_DAO : return 13;
 				case Constants.KE_CAN_TING : return 13;
 			}
@@ -94,21 +93,24 @@ public class ServiceUtils {
 		Integer toiletNum = calculationPriceDTO.getToiletNum();
 		// 厨房
 		Integer kitchenNum = calculationPriceDTO.getKitchenNum();
-		if (removeWallNum != null && !removeWallNum.equals(0)) {
+		// 阳台数
+		Integer balconyNum = calculationPriceDTO.getBalconyNum();
+		
+		if (removeWallNum != null && removeWallNum > 0 ) {
 			HomeDetailDTO chaQiang = new HomeDetailDTO(homeId, Constants.QUAN_WU, null, 2, createdBy);
 			details.add(chaQiang);
 		}
-		if (addWallNum != null && !addWallNum.equals(0)) {
+		if (addWallNum != null && addWallNum > 0) {
 			HomeDetailDTO qiQiang = new HomeDetailDTO(homeId, Constants.QUAN_WU, null, 3, createdBy);
 			details.add(qiQiang);
 		}
-		if (restaurantNum != null && !restaurantNum.equals(0)) {
+		if (restaurantNum != null && restaurantNum > 0 ) {
 			HomeDetailDTO canTing = new HomeDetailDTO(homeId, Constants.CAN_TING, null, 10, createdBy);
 			HomeDetailDTO dian = new HomeDetailDTO(homeId, Constants.CAN_TING, null, 6, createdBy);
 			details.add(canTing);
 			details.add(dian);
 		}
-		if (livingRoomNum != null && !livingRoomNum.equals(0)) {
+		if (livingRoomNum != null && livingRoomNum > 0) {
 			HomeDetailDTO keTing = new HomeDetailDTO(homeId, Constants.KE_TING, null, 10, createdBy);
 			HomeDetailDTO guoDao = new HomeDetailDTO(homeId, Constants.GUO_DAO, null, 10, createdBy);
 			HomeDetailDTO dian = new HomeDetailDTO(homeId, Constants.KE_TING, null, 6, createdBy);
@@ -116,21 +118,25 @@ public class ServiceUtils {
 			details.add(guoDao);
 			details.add(dian);
 		}
-		if (roomNum != null && !roomNum.equals(0)) {
+		if (roomNum != null && roomNum > 0) {
 			HomeDetailDTO fangJian = new HomeDetailDTO(homeId, Constants.FANG_JIAN, null, 10, createdBy);
 			HomeDetailDTO dian = new HomeDetailDTO(homeId, Constants.FANG_JIAN, null, 6, createdBy);
 			details.add(fangJian);
 			details.add(dian);
 		}
-		if (toiletNum != null && !toiletNum.equals(0)) {
+		if (toiletNum != null && toiletNum > 0) {
 			HomeDetailDTO fangShui = new HomeDetailDTO(homeId, Constants.WEI_SHEN_JIAN, null, 28, createdBy);
 			HomeDetailDTO dian = new HomeDetailDTO(homeId, Constants.WEI_SHEN_JIAN, null, 27, createdBy);
 			details.add(fangShui);
 			details.add(dian);
 		}
-		if (kitchenNum != null && !kitchenNum.equals(0)) {
+		if (kitchenNum != null && kitchenNum > 0) {
 			HomeDetailDTO dian = new HomeDetailDTO(homeId, Constants.CHU_FANG, null, 27, createdBy);
 			details.add(dian);
+		}
+		if (balconyNum != null && balconyNum > 0) {
+			HomeDetailDTO yangTai = new HomeDetailDTO(homeId, Constants.YANG_TAI, null, 31, createdBy);
+			details.add(yangTai);
 		}
 		HomeDetailDTO kaiCao = new HomeDetailDTO(homeId, Constants.QUAN_WU, null, 1, createdBy);
 		HomeDetailDTO daKong = new HomeDetailDTO(homeId, Constants.QUAN_WU, null, 4, createdBy);
@@ -153,6 +159,10 @@ public class ServiceUtils {
 				details.add(keTing);
 				details.add(canTing);
 				details.add(guoDao);
+			}
+			if (Constants.FANG_JIAN.equals(homeDetailType) && Constants.BIAN_XIAN.equals(projectName)) {
+				HomeDetailDTO fangJianLX = new HomeDetailDTO(homeId, Constants.FANG_JIAN, Constants.LING_XING, 13, createdBy);
+				details.add(fangJianLX);
 			}
 		}
 		return details;
