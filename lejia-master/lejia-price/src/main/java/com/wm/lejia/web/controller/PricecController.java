@@ -18,7 +18,7 @@ import com.wm.lejia.pojo.entity.TotalPrice;
 import com.wm.lejia.pojo.entity.UserPrice;
 import com.wm.lejia.pojo.vo.TotalPriceVO;
 import com.wm.lejia.service.PriceService;
-import com.wm.lejia.utils.Result;
+import com.wm.lejia.common.utils.Result;
 
 
 @RestController

@@ -1,4 +1,4 @@
-package com.wm.lejia.constant;
+package com.wm.lejia.common.constant;
 
 public class Constants {
 

@@ -21,7 +21,7 @@ import com.wm.lejia.feign.pojo.model.TotalPrice;
 import com.wm.lejia.feign.pojo.model.User;
 import com.wm.lejia.feign.pojo.vo.ProvinceVO;
 
-import com.wm.lejia.utils.Result;
+import com.wm.lejia.common.utils.Result;
 
 @FeignClient(name = "service-price", configuration = FeignConfig.class, fallback = FallbackPriceHystric.class)
 public interface PriceFeignClient {

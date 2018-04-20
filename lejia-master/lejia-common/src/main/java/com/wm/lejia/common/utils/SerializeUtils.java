@@ -1,4 +1,4 @@
-package com.wm.lejia.utils;
+package com.wm.lejia.common.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

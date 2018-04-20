@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wm.lejia.db.mapper.DefCityMapper" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.pojo.entity.DefCity" >
+    <id column="def_city_id" property="defCityId" jdbcType="INTEGER" />
+    <result column="def_province_id" property="defProvinceId" jdbcType="INTEGER" />
+    <result column="def_city_name" property="defCityName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    def_city_id, def_province_id, def_city_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from def_city
+    where def_city_id = #{defCityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from def_city
+    where def_city_id = #{defCityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wm.lejia.pojo.entity.DefCity" >
+    insert into def_city (def_city_id, def_province_id, def_city_name
+      )
+    values (#{defCityId,jdbcType=INTEGER}, #{defProvinceId,jdbcType=INTEGER}, #{defCityName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.DefCity" >
+    insert into def_city
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="defCityId != null" >
+        def_city_id,
+      </if>
+      <if test="defProvinceId != null" >
+        def_province_id,
+      </if>
+      <if test="defCityName != null" >
+        def_city_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="defCityId != null" >
+        #{defCityId,jdbcType=INTEGER},
+      </if>
+      <if test="defProvinceId != null" >
+        #{defProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="defCityName != null" >
+        #{defCityName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.pojo.entity.DefCity" >
+    update def_city
+    <set >
+      <if test="defProvinceId != null" >
+        def_province_id = #{defProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="defCityName != null" >
+        def_city_name = #{defCityName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where def_city_id = #{defCityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.pojo.entity.DefCity" >
+    update def_city
+    set def_province_id = #{defProvinceId,jdbcType=INTEGER},
+      def_city_name = #{defCityName,jdbcType=VARCHAR}
+    where def_city_id = #{defCityId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -17,8 +17,8 @@ import com.wm.lejia.feign.pojo.model.TotalPrice;
 import com.wm.lejia.feign.pojo.model.User;
 import com.wm.lejia.feign.pojo.model.UserPrice;
 import com.wm.lejia.feign.pojo.vo.ProvinceVO;
-import com.wm.lejia.utils.Result;
-import com.wm.lejia.utils.ResultCode;
+import com.wm.lejia.common.utils.Result;
+import com.wm.lejia.common.utils.ResultCode;
 
 @Component
 public class FallbackPriceHystric implements PriceFeignClient{

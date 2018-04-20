@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wm.lejia.constant.Constants;
+import com.wm.lejia.common.constant.Constants;
 import com.wm.lejia.db.mapper.DecorationPriceMapper;
 import com.wm.lejia.db.mapper.HomeDetailMapper;
 import com.wm.lejia.db.mapper.HomeMapper;
@@ -28,7 +28,7 @@ import com.wm.lejia.pojo.entity.UserPrice;
 import com.wm.lejia.pojo.vo.PriceVO;
 import com.wm.lejia.pojo.vo.TotalPriceVO;
 import com.wm.lejia.service.PriceService;
-import com.wm.lejia.utils.StringUtils;
+import com.wm.lejia.common.utils.StringUtils;
 
 @Service
 public class PriceServiceImpl implements PriceService {

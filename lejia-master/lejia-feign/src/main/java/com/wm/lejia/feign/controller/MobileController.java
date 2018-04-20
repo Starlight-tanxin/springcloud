@@ -22,9 +22,9 @@ import com.wm.lejia.feign.pojo.model.TotalPrice;
 import com.wm.lejia.feign.pojo.model.User;
 import com.wm.lejia.feign.pojo.model.UserPrice;
 import com.wm.lejia.feign.utils.ServiceUtils;
-import com.wm.lejia.utils.Result;
-import com.wm.lejia.utils.ResultCode;
-import com.wm.lejia.utils.StringUtils;
+import com.wm.lejia.common.utils.Result;
+import com.wm.lejia.common.utils.ResultCode;
+import com.wm.lejia.common.utils.StringUtils;
 
 @RestController
 @RequestMapping("/lejia/mobile")

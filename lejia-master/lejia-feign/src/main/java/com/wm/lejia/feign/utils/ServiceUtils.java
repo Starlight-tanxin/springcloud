@@ -2,10 +2,10 @@ package com.wm.lejia.feign.utils;
 
 import java.util.List;
 
-import com.wm.lejia.constant.Constants;
+import com.wm.lejia.common.constant.Constants;
 import com.wm.lejia.feign.pojo.dto.CalculationPriceDTO;
 import com.wm.lejia.feign.pojo.dto.HomeDetailDTO;
-import com.wm.lejia.utils.StringUtils;
+import com.wm.lejia.common.utils.StringUtils;
 
 public class ServiceUtils {
 	

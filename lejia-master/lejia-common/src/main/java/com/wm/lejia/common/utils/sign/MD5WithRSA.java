@@ -1,4 +1,4 @@
-package com.wm.lejia.utils.sign;
+package com.wm.lejia.common.utils.sign;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,9 +11,9 @@ import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 
-public class RSA{
+public class MD5WithRSA {
 	
-	public static final String  SIGN_ALGORITHMS = "SHA1WithRSA";
+	public static final String  SIGN_ALGORITHMS = "MD5WithRSA";
 	
 	/**
 	* RSA签名

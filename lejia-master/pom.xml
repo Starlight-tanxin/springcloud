@@ -11,6 +11,7 @@
 		<module>lejia-common</module>
 		<module>lejia-price</module>
 		<module>lejia-feign</module>
+		<module>lejia-manage</module>
 	</modules>
 
 	<properties>

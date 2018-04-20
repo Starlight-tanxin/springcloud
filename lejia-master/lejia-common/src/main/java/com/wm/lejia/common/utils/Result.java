@@ -1,4 +1,4 @@
-package com.wm.lejia.utils;
+package com.wm.lejia.common.utils;
 
 public class Result<T> {
 

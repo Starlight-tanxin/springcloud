@@ -1,4 +1,4 @@
-package com.wm.lejia.utils.sign;
+package com.wm.lejia.common.utils.sign;
 
 import java.security.MessageDigest;
 
