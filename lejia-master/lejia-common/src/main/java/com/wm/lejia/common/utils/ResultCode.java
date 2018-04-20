@@ -51,6 +51,8 @@ public enum ResultCode {
 	CODE_NOT_EXTIST(417,"没有验证码"),
 	/** 验证码错误 */
 	CODE_ERROR(418,"验证码错误"),
+	/** 查询数据出错 */
+	QUERY_ERROR(420,"查询数据出错"),
 	;
 	
 	
