@@ -57,11 +57,14 @@ public class PriceServiceImpl implements PriceService {
 		try {
 			rows = homeMapper.insertSelective(home);
 			log.info("PriceServiceImpl  createHome ====> rows : " + rows);
+			if(rows > 0) {
+				return home;
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			//e.printStackTrace();
+			log.error("PriceServiceImpl  createHome ====> 插入数据出错",e);
 		}
-		return home;
+		return null;
 	}
 
 	@Override
@@ -297,6 +300,8 @@ public class PriceServiceImpl implements PriceService {
 		vo.setPriceItem(priceVOList);
 		vo.setSumPrice(sumPrice);
 		vo.setUnitSumPrice(unitSumPrice);
+		vo.setCityId(cityId);
+		vo.setProvinceId(provinceId);
 		return vo;
 	}
 	
@@ -326,7 +331,7 @@ public class PriceServiceImpl implements PriceService {
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
-			log.error("插入出错", e);
+			log.error("PriceServiceImpl   createTotalPrice ===> 插入数据出错", e);
 		}
 		return null;
 	}
@@ -340,7 +345,7 @@ public class PriceServiceImpl implements PriceService {
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
-			log.error("PriceService createPriceItem 插入出错", e);
+			log.error("PriceService   createPriceItem ===> 插入数据出错", e);
 		}
 		return false;
 	}
@@ -352,7 +357,7 @@ public class PriceServiceImpl implements PriceService {
 			return list;
 		} catch (Exception e) {
 			//e.printStackTrace();
-			log.error("PriceService listTotalPrice 查询出错",e);
+			log.error("PriceService   listTotalPrice 查询出错",e);
 		}
 		return null;
 	}
@@ -364,7 +369,7 @@ public class PriceServiceImpl implements PriceService {
 			return list;
 		} catch (Exception e) {
 			//e.printStackTrace();
-			log.error("PriceService listUserPrice 查询出错",e);
+			log.error("PriceService   listUserPrice 查询出错",e);
 		}
 		return null;
 	}

@@ -1,6 +1,6 @@
 package com.wm.lejia.db.mapper;
 
-import com.wm.lejia.pojo.entity.UserRemark;
+import com.wm.lejia.common.pojo.entity.UserRemark;
 
 public interface UserRemarkMapper {
     int deleteByPrimaryKey(Integer userRemarkId);

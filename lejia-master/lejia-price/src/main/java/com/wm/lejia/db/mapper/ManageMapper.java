@@ -1,6 +1,6 @@
 package com.wm.lejia.db.mapper;
 
-import com.wm.lejia.pojo.entity.Manage;
+import com.wm.lejia.common.pojo.entity.Manage;
 
 public interface ManageMapper {
     int deleteByPrimaryKey(Integer manageId);

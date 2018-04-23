@@ -16,4 +16,6 @@ public interface CityService {
 	City createCity(City city);
 	
 	List<DefProvinceDTO> getDefProvinceAndCity();
+	
+	List<City> listCityByHome();
 }

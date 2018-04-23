@@ -7,21 +7,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.wm.lejia.common.pojo.dto.HomeDTO;
+import com.wm.lejia.common.pojo.dto.HomeDetailDTO;
+import com.wm.lejia.common.pojo.dto.LoginDTO;
+import com.wm.lejia.common.pojo.dto.PriceDTO;
+import com.wm.lejia.common.pojo.dto.ServicePriceCalculationPriceDTO;
+import com.wm.lejia.common.pojo.dto.TotalPriceDTO;
+import com.wm.lejia.common.pojo.dto.UserDTO;
+import com.wm.lejia.common.pojo.entity.Banner;
+import com.wm.lejia.common.pojo.entity.City;
+import com.wm.lejia.common.pojo.entity.Province;
+import com.wm.lejia.common.pojo.entity.TotalPrice;
+import com.wm.lejia.common.pojo.entity.User;
+import com.wm.lejia.common.pojo.entity.UserPrice;
+import com.wm.lejia.common.pojo.vo.ProvinceVO;
+import com.wm.lejia.common.utils.Result;
 import com.wm.lejia.feign.config.FeignConfig;
 import com.wm.lejia.feign.hystric.FallbackPriceHystric;
-import com.wm.lejia.feign.pojo.dto.CalculationPriceDTO;
-import com.wm.lejia.feign.pojo.dto.HomeDTO;
-import com.wm.lejia.feign.pojo.dto.HomeDetailDTO;
-import com.wm.lejia.feign.pojo.dto.PriceDTO;
-import com.wm.lejia.feign.pojo.dto.TotalPriceDTO;
-import com.wm.lejia.feign.pojo.dto.UserDTO;
-import com.wm.lejia.feign.pojo.model.City;
-import com.wm.lejia.feign.pojo.model.Province;
-import com.wm.lejia.feign.pojo.model.TotalPrice;
-import com.wm.lejia.feign.pojo.model.User;
-import com.wm.lejia.feign.pojo.vo.ProvinceVO;
-
-import com.wm.lejia.common.utils.Result;
 
 @FeignClient(name = "service-price", configuration = FeignConfig.class, fallback = FallbackPriceHystric.class)
 public interface PriceFeignClient {
@@ -33,7 +35,7 @@ public interface PriceFeignClient {
 	Result<List<HomeDetailDTO>> createHomeDetail(@RequestBody List<HomeDetailDTO> details);
 
 	@PostMapping(value = "/price/calculationPrice", consumes = "application/json")
-	Result<TotalPriceDTO> calculationPrice(@RequestBody CalculationPriceDTO calculationPriceDTO);
+	Result<TotalPriceDTO> calculationPrice(@RequestBody ServicePriceCalculationPriceDTO calculationPriceDTO);
 
 	@PostMapping(value = "/user/checkUser", consumes = "application/json")
 	Result<User> checkUser(@RequestBody UserDTO userDTO);
@@ -42,7 +44,7 @@ public interface PriceFeignClient {
 	Result<User> regUser(@RequestBody UserDTO userDTO);
 
 	@PostMapping(value = "/price/getHome")
-	CalculationPriceDTO getHome(@RequestParam(value = "homeId") Integer homeId);
+	ServicePriceCalculationPriceDTO getHome(@RequestParam(value = "homeId") Integer homeId);
 
 	@PostMapping(value = "/price/createTotalPrice", consumes = "application/json")
 	Result<TotalPrice> createTotalPrice(@RequestBody TotalPrice totalPrice);
@@ -54,7 +56,7 @@ public interface PriceFeignClient {
 	Result<List<TotalPrice>> listTotalPrice(@RequestParam(value = "userId") Integer userId);
 
 	@PostMapping(value = "/price/listPriceItem")
-	Result<List<com.wm.lejia.feign.pojo.model.UserPrice>> listPriceItem(@RequestParam(value = "totalPriceId") Integer totalPriceId);
+	Result<List<UserPrice>> listPriceItem(@RequestParam(value = "totalPriceId") Integer totalPriceId);
 
 	@PostMapping(value = "/user/getUserByWechatOpenid")
 	Result<User> getUserByWechatOpenid(@RequestParam(value = "wechatOpenid") String wechatOpenid);
@@ -67,4 +69,14 @@ public interface PriceFeignClient {
 	
 	@PostMapping(value = "/city/createCity", consumes = "application/json")
 	Result<City> createCity(@RequestBody City city);
+	
+	@PostMapping(value = "/banner/listBannerByHome", consumes = "application/json")
+	Result<List<Banner>> listBannerByHome(@RequestBody Banner banner);
+	
+	@PostMapping(value = "/user/login", consumes = "application/json")
+	Result<User> login(@RequestBody LoginDTO dto);
+	
+	@PostMapping(value = "/city/listCityByHome")
+	Result<List<City>> listCityByHome();
+	
 }

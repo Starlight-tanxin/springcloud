@@ -60,7 +60,7 @@ public class CityServiceImpl implements CityService {
 			}
 		} catch (Exception e) {
 			// e.printStackTrace();
-			log.error("CityServiceImpl createProvince ===> 添加数据失败", e);
+			log.error("CityServiceImpl   createProvince ===> 添加数据失败", e);
 		}
 		return null;
 	}
@@ -74,7 +74,7 @@ public class CityServiceImpl implements CityService {
 			}
 		} catch (Exception e) {
 			// e.printStackTrace();
-			log.error("CityServiceImpl createCity ===> 添加数据失败", e);
+			log.error("CityServiceImpl   createCity ===> 添加数据失败", e);
 		}
 		return null;
 	}
@@ -93,6 +93,18 @@ public class CityServiceImpl implements CityService {
 			}
 		}
 		return provinceList;
+	}
+
+	@Override
+	public List<City> listCityByHome() {
+		try {
+			List<City> list = cityMapper.listCity();
+			return list;
+		} catch (Exception e) {
+			//e.printStackTrace();
+			log.error("CityServiceImpl   listCityByHome ===> 查询数据失败",e);
+		}
+		return null;
 	}
 
 }

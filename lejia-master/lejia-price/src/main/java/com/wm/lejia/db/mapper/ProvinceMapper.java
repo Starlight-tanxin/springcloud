@@ -20,6 +20,6 @@ public interface ProvinceMapper {
 
     int updateByPrimaryKey(Province record);
     
-    @Select("SELECT * FROM province WHERE is_deleted = 0")
+    @Select("SELECT * FROM province WHERE is_deleted = 0 AND is_up = 1")
     List<ProvinceVO> listProvince();
 }

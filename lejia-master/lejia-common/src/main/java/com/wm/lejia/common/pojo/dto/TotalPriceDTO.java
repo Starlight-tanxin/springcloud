@@ -1,4 +1,4 @@
-package com.wm.lejia.feign.pojo.dto;
+package com.wm.lejia.common.pojo.dto;
 
 import java.util.List;
 
@@ -9,6 +9,10 @@ public class TotalPriceDTO {
 	private Double unitSumPrice;
 	
 	private Integer userId;
+	
+	private Integer provinceId;
+	
+	private Integer cityId;
 
 	private List<PriceDTO> priceItem;
 
@@ -43,5 +47,28 @@ public class TotalPriceDTO {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+
+	public Integer getProvinceId() {
+		return provinceId;
+	}
+
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
+
+	public Integer getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
+
+	@Override
+	public String toString() {
+		return "TotalPriceDTO [sumPrice=" + sumPrice + ", unitSumPrice=" + unitSumPrice + ", userId=" + userId
+				+ ", provinceId=" + provinceId + ", cityId=" + cityId + ", priceItem=" + priceItem + "]";
+	}
+	
 	
 }

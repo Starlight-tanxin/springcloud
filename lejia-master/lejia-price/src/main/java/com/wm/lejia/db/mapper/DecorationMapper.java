@@ -6,7 +6,7 @@ import java.util.Set;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.wm.lejia.pojo.entity.Decoration;
+import com.wm.lejia.common.pojo.entity.Decoration;
 
 public interface DecorationMapper {
     int deleteByPrimaryKey(Integer decorationId);

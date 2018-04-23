@@ -19,6 +19,7 @@ public interface CityMapper {
 
     int updateByPrimaryKey(City record);
     
-    @Select("SELECT * FROM city WHERE is_deleted = 0")
+    @Select("SELECT * FROM city WHERE is_deleted = 0 AND is_up = 1")
     List<City> listCity();
+    
 }

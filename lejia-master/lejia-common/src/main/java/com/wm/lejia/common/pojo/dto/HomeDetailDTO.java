@@ -1,4 +1,4 @@
-package com.wm.lejia.feign.pojo.dto;
+package com.wm.lejia.common.pojo.dto;
 
 public class HomeDetailDTO {
 
@@ -61,6 +61,12 @@ public class HomeDetailDTO {
 		this.info = info;
 		this.decorationId = decorationId;
 		this.createdBy = createdBy;
+	}
+
+	@Override
+	public String toString() {
+		return "HomeDetailDTO [homeId=" + homeId + ", homeDetailType=" + homeDetailType + ", info=" + info
+				+ ", decorationId=" + decorationId + ", createdBy=" + createdBy + "]";
 	}
 
 }

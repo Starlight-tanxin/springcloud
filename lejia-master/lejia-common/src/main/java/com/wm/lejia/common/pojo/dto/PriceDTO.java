@@ -1,6 +1,6 @@
-package com.wm.lejia.pojo.vo;
+package com.wm.lejia.common.pojo.dto;
 
-public class PriceVO {
+public class PriceDTO {
 	private String region;
 
 	private String decorationWord;
@@ -12,9 +12,13 @@ public class PriceVO {
 	private String numStr;
 
 	private Double price;
-	
+
 	private Double unitPrice;
-	
+
+	private Integer createdBy;
+
+	private Integer totalPriceId;
+
 	public String getRegion() {
 		return region;
 	}
@@ -71,12 +75,27 @@ public class PriceVO {
 		this.unitPrice = unitPrice;
 	}
 
-	@Override
-	public String toString() {
-		return "PriceVO [region=" + region + ", decorationWord=" + decorationWord + ", unit=" + unit
-				+ ", decorationName=" + decorationName + ", numStr=" + numStr + ", price=" + price + ", unitPrice="
-				+ unitPrice + "]";
+	public Integer getCreatedBy() {
+		return createdBy;
 	}
 
-	
+	public void setCreatedBy(Integer createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Integer getTotalPriceId() {
+		return totalPriceId;
+	}
+
+	public void setTotalPriceId(Integer totalPriceId) {
+		this.totalPriceId = totalPriceId;
+	}
+
+	@Override
+	public String toString() {
+		return "PriceDTO [region=" + region + ", decorationWord=" + decorationWord + ", unit=" + unit
+				+ ", decorationName=" + decorationName + ", numStr=" + numStr + ", price=" + price + ", unitPrice="
+				+ unitPrice + ", createdBy=" + createdBy + ", totalPriceId=" + totalPriceId + "]";
+	}
+
 }

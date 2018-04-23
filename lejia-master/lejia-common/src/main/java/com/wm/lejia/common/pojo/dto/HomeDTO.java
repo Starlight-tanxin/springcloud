@@ -1,4 +1,4 @@
-package com.wm.lejia.feign.pojo.dto;
+package com.wm.lejia.common.pojo.dto;
 
 public class HomeDTO extends UserDTO{
 	
@@ -140,6 +140,15 @@ public class HomeDTO extends UserDTO{
 
 	public void setAddWallNum(Integer addWallNum) {
 		this.addWallNum = addWallNum;
+	}
+
+	@Override
+	public String toString() {
+		return "HomeDTO [homeId=" + homeId + ", userId=" + userId + ", provinceId=" + provinceId + ", cityId=" + cityId
+				+ ", address=" + address + ", areaNum=" + areaNum + ", roomNum=" + roomNum + ", livingRoomNum="
+				+ livingRoomNum + ", restaurantNum=" + restaurantNum + ", kitchenNum=" + kitchenNum + ", toiletNum="
+				+ toiletNum + ", balconyNum=" + balconyNum + ", removeWallNum=" + removeWallNum + ", addWallNum="
+				+ addWallNum + "]";
 	}
 
 }

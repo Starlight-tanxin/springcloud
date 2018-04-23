@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wm.lejia.common.pojo.dto.LoginDTO;
 import com.wm.lejia.common.pojo.dto.UserDTO;
 import com.wm.lejia.common.pojo.entity.User;
 import com.wm.lejia.service.UserService;
@@ -48,5 +49,10 @@ public class UserController {
 		dto.setWechatOpenid(wechatOpenid);
 		User user = userService.getUser(dto);
 		return new Result<User>(user);
+	}
+	
+	@PostMapping("/login")
+	public Result<User> login(@RequestBody LoginDTO dto){
+		return userService.login(dto);
 	}
 }

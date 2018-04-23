@@ -37,6 +37,9 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wm.lejia.common.pojo.entity.TotalPrice" >
+    <selectKey keyColumn="total_price_id" keyProperty="totalPriceId" order="AFTER" resultType="java.lang.Integer">
+  		SELECT LAST_INSERT_ID()
+  	</selectKey>
     insert into total_price
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="totalPriceId != null" >

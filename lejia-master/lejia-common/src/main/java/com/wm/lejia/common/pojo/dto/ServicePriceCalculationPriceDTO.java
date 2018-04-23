@@ -1,8 +1,10 @@
-package com.wm.lejia.feign.pojo.dto;
+package com.wm.lejia.common.pojo.dto;
 
 import java.util.List;
 
-public class CalculationPriceDTO extends HomeDTO{
+import com.wm.lejia.common.pojo.dto.HomeDetailDTO;
+
+public class ServicePriceCalculationPriceDTO extends HomeDTO{
 	
 	List<HomeDetailDTO> details;
 

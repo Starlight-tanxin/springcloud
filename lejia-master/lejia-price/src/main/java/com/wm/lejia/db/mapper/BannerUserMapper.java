@@ -1,6 +1,6 @@
 package com.wm.lejia.db.mapper;
 
-import com.wm.lejia.pojo.entity.BannerUser;
+import com.wm.lejia.common.pojo.entity.BannerUser;
 
 public interface BannerUserMapper {
     int deleteByPrimaryKey(Integer bannerUserId);

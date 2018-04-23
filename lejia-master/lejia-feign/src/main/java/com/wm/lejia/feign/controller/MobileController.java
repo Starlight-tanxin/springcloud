@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wm.lejia.feign.client.PriceFeignClient;
-import com.wm.lejia.feign.pojo.dto.CalculationPriceDTO;
-import com.wm.lejia.feign.pojo.dto.HomeDTO;
-import com.wm.lejia.feign.pojo.dto.HomeDetailDTO;
-import com.wm.lejia.feign.pojo.dto.PriceDTO;
-import com.wm.lejia.feign.pojo.dto.TotalPriceDTO;
-import com.wm.lejia.feign.pojo.dto.UserDTO;
-import com.wm.lejia.feign.pojo.model.TotalPrice;
-import com.wm.lejia.feign.pojo.model.User;
-import com.wm.lejia.feign.pojo.model.UserPrice;
-import com.wm.lejia.feign.utils.ServiceUtils;
+import com.wm.lejia.common.pojo.dto.HomeDTO;
+import com.wm.lejia.common.pojo.dto.HomeDetailDTO;
+import com.wm.lejia.common.pojo.dto.PriceDTO;
+import com.wm.lejia.common.pojo.dto.ServicePriceCalculationPriceDTO;
+import com.wm.lejia.common.pojo.dto.TotalPriceDTO;
+import com.wm.lejia.common.pojo.dto.UserDTO;
+import com.wm.lejia.common.pojo.entity.TotalPrice;
+import com.wm.lejia.common.pojo.entity.User;
+import com.wm.lejia.common.pojo.entity.UserPrice;
 import com.wm.lejia.common.utils.Result;
 import com.wm.lejia.common.utils.ResultCode;
 import com.wm.lejia.common.utils.StringUtils;
+import com.wm.lejia.feign.client.PriceFeignClient;
+import com.wm.lejia.feign.utils.ServiceUtils;
 
 @RestController
 @RequestMapping("/lejia/mobile")
@@ -59,7 +59,7 @@ public class MobileController {
 		}
 		Integer userId = user.getUserId();
 		dto.setUserId(userId);
-		log.info(user.toString());
+		log.info("MobileController   createHome ===> user : " + user.toString());
 		Result<HomeDTO> createHomeInfo = priceFeignClient.createHomeInfo(dto);
 		return createHomeInfo;
 	}
@@ -71,7 +71,7 @@ public class MobileController {
 		}
 		Integer homeId = details.get(0).getHomeId();
 		Integer createdBy = details.get(0).getCreatedBy();
-		CalculationPriceDTO calculationPriceDTO = priceFeignClient.getHome(homeId);
+		ServicePriceCalculationPriceDTO calculationPriceDTO = priceFeignClient.getHome(homeId);
 		if(calculationPriceDTO == null) {
 			return new Result<String>(ResultCode.DATA_NOT_EXIST);
 		}
@@ -110,18 +110,23 @@ public class MobileController {
 		totalPrice.setTotal(totalPriceDTO.getSumPrice());
 		totalPrice.setUserId(userId);
 		totalPrice.setCreatedBy(userId);
+		totalPrice.setCityId(totalPriceDTO.getCityId());
+		totalPrice.setProvinceId(totalPriceDTO.getProvinceId());
 		// 创建
 		Result<TotalPrice> createTotalPrice = priceFeignClient.createTotalPrice(totalPrice);
-		TotalPrice tp = createTotalPrice.getData();
-		if(tp == null || tp.getTotalPriceId() == null) {
-			return new Result<String>(ResultCode.INSERT_ERROR,"保存用户计价数据");
+		if(createTotalPrice.getCode() != 200) {
+			return createTotalPrice;
 		}
+		TotalPrice tp = createTotalPrice.getData();
 		List<PriceDTO> priceDTOs = totalPriceDTO.getPriceItem();
 		for (PriceDTO pDTO : priceDTOs) {
 			pDTO.setCreatedBy(userId);
 			pDTO.setTotalPriceId(tp.getTotalPriceId());
 		}
-		priceFeignClient.createPriceItem(priceDTOs);
+		Result<Boolean> createPriceItemResult = priceFeignClient.createPriceItem(priceDTOs);
+		if(createPriceItemResult.getCode() != 200) {
+			return createPriceItemResult;
+		}
 		return new Result<String>();
 	}
 	

@@ -19,6 +19,7 @@ import com.wm.lejia.common.pojo.entity.UserPrice;
 import com.wm.lejia.common.pojo.vo.TotalPriceVO;
 import com.wm.lejia.service.PriceService;
 import com.wm.lejia.common.utils.Result;
+import com.wm.lejia.common.utils.ResultCode;
 
 
 @RestController
@@ -33,7 +34,11 @@ public class PricecController {
 	 @PostMapping("/createHomeInfo")
 	 public Result<Home> createHomeInfo(@RequestBody Home home) {
 		 log.info("PricecController  createHomeInfo ====>" + home.toString());
-		 return new Result<Home>(priceService.createHome(home));
+		 Home h =  priceService.createHome(home);
+		 if(h == null) {
+			 return new Result<Home>(ResultCode.INSERT_ERROR);
+		 }
+		 return new Result<Home>(h);
 	 }
 	 
 	 @PostMapping("/createHomeDetail")
@@ -54,12 +59,20 @@ public class PricecController {
 	 @PostMapping("/createTotalPrice")
 	 public Result<TotalPrice> createTotalPrice(@RequestBody TotalPrice totalPrice) {
 		 totalPrice.setCreatedTime(new Date());
-		 return new Result<TotalPrice>(priceService.createTotalPrice(totalPrice));
+		 TotalPrice tp = priceService.createTotalPrice(totalPrice);
+		 if (tp == null) {
+			 return new Result<TotalPrice>(ResultCode.INSERT_ERROR);
+		 }
+		 return new Result<TotalPrice>(tp);
 	 }
 	 
 	 @PostMapping("/createPriceItem")
 	 public Result<Boolean> createPriceItem(@RequestBody List<UserPrice> list){
-		 return new Result<Boolean>(priceService.createPriceItem(list));
+		 Boolean b = priceService.createPriceItem(list);
+		 if(b.booleanValue()) {
+			 return new Result<Boolean>(ResultCode.INSERT_ERROR,b);
+		 }
+		 return new Result<Boolean>(b);
 	 }
 	 
 	 @PostMapping("/listTotalPrice")

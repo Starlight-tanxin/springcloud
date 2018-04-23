@@ -3,8 +3,8 @@ package com.wm.lejia.feign.utils;
 import java.util.List;
 
 import com.wm.lejia.common.constant.Constants;
-import com.wm.lejia.feign.pojo.dto.CalculationPriceDTO;
-import com.wm.lejia.feign.pojo.dto.HomeDetailDTO;
+import com.wm.lejia.common.pojo.dto.HomeDetailDTO;
+import com.wm.lejia.common.pojo.dto.ServicePriceCalculationPriceDTO;
 import com.wm.lejia.common.utils.StringUtils;
 
 public class ServiceUtils {
@@ -80,7 +80,7 @@ public class ServiceUtils {
 	 * @param calculationPriceDTO 装修对象
 	 * @return
 	 */
-	public static List<HomeDetailDTO> createHomeDetail(Integer homeId,Integer createdBy,List<HomeDetailDTO> details, CalculationPriceDTO calculationPriceDTO) {
+	public static List<HomeDetailDTO> createHomeDetail(Integer homeId,Integer createdBy,List<HomeDetailDTO> details, ServicePriceCalculationPriceDTO calculationPriceDTO) {
 		Integer removeWallNum = calculationPriceDTO.getRemoveWallNum(); 
 		Integer addWallNum = calculationPriceDTO.getAddWallNum();
 		// 餐厅

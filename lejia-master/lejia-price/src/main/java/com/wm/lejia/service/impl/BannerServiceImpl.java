@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.wm.lejia.common.pojo.entity.Banner;
 import com.wm.lejia.db.mapper.BannerMapper;
-import com.wm.lejia.db.mapper.BannerUserMapper;
 import com.wm.lejia.service.BannerService;
 
 @Service
@@ -20,9 +19,6 @@ public class BannerServiceImpl implements BannerService {
 	
 	@Autowired
 	private BannerMapper bannerMapper;
-	
-	@Autowired
-	private BannerUserMapper bannerUserMapper;
 
 	@Override
 	public List<Banner> listBannerByHome(Banner banner) {

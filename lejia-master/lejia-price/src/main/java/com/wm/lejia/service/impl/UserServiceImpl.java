@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 	public Result<User> login(LoginDTO dto) {
 		String mobile = dto.getMobile();
 		String msmCode = dto.getMsmCode();
-		if(!msmCode.equals("1234")) {
+		if(!"1234".equals(msmCode)) {
 			return new Result<User>(ResultCode.CODE_ERROR);
 		}
 		UserDTO userDTO = new UserDTO();
@@ -69,7 +69,12 @@ public class UserServiceImpl implements UserService {
 		try {
 			List<User> list = userMapper.getUserByMobileOROpenid(userDTO);
 			if(list == null || list.size() == 0) {
-				return new Result<User>(ResultCode.ACCOUNT_NO_EXIT);
+				User user = new User();
+				user.setMobile(mobile);
+				// 不存在就注册
+				user = regUser(user);
+				return new Result<User>(user);
+				//return new Result<User>(ResultCode.ACCOUNT_NO_EXIT);
 			}
 			return new Result<User>(list.get(0));
 		} catch (Exception e) {

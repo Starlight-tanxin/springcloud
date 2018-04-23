@@ -30,7 +30,7 @@ public class CityController {
 	@PostMapping("/getProvinceAndCity")
 	public Result<List<ProvinceVO>> getProvinceAndCity(){
 		List<ProvinceVO> list = cityService.getCity();
-		log.info("CityController getProvinceAndCity ===> list值" + list);
+		log.info("CityController   getProvinceAndCity ===> list值" + list);
 		return new Result<List<ProvinceVO>>(list);
 	}
 	
@@ -58,4 +58,9 @@ public class CityController {
 		return new Result<>(list);
 	}
 
+	@PostMapping("/listCityByHome")
+	public Result<List<City>> listCityByHome(){
+		List<City> list = cityService.listCityByHome();
+		return new Result<List<City>>(list);
+	}
 }
