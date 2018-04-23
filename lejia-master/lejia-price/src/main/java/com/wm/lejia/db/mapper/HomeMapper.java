@@ -1,6 +1,6 @@
 package com.wm.lejia.db.mapper;
 
-import com.wm.lejia.pojo.entity.Home;
+import com.wm.lejia.common.pojo.entity.Home;
 
 public interface HomeMapper {
     int deleteByPrimaryKey(Integer homeId);

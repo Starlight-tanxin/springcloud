@@ -30,4 +30,11 @@ public class DefCity {
     public void setDefCityName(String defCityName) {
         this.defCityName = defCityName == null ? null : defCityName.trim();
     }
+
+	@Override
+	public String toString() {
+		return "DefCity [defCityId=" + defCityId + ", defProvinceId=" + defProvinceId + ", defCityName=" + defCityName
+				+ "]";
+	}
+    
 }

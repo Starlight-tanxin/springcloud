@@ -92,4 +92,13 @@ public class Decoration {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
+
+	@Override
+	public String toString() {
+		return "Decoration [decorationId=" + decorationId + ", decorationWord=" + decorationWord + ", unit=" + unit
+				+ ", decorationName=" + decorationName + ", createdTime=" + createdTime + ", createdBy=" + createdBy
+				+ ", updatedTime=" + updatedTime + ", updatedBy=" + updatedBy + ", isDeleted=" + isDeleted + "]";
+	}
+    
+    
 }

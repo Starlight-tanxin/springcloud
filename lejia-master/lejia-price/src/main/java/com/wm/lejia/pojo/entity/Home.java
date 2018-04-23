@@ -1,9 +1,8 @@
 package com.wm.lejia.pojo.entity;
 
 public class Home {
-	
     private Integer homeId;
-    
+
     private Integer userId;
 
     private Integer provinceId;
@@ -39,14 +38,14 @@ public class Home {
     }
 
     public Integer getUserId() {
-		return userId;
-	}
+        return userId;
+    }
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-	public Integer getProvinceId() {
+    public Integer getProvinceId() {
         return provinceId;
     }
 
@@ -150,4 +149,5 @@ public class Home {
 				+ toiletNum + ", balconyNum=" + balconyNum + ", removeWallNum=" + removeWallNum + ", addWallNum="
 				+ addWallNum + "]";
 	}
+    
 }

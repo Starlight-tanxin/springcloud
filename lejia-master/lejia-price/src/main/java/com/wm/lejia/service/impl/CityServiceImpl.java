@@ -11,11 +11,11 @@ import com.wm.lejia.db.mapper.CityMapper;
 import com.wm.lejia.db.mapper.DefCityMapper;
 import com.wm.lejia.db.mapper.DefProvinceMapper;
 import com.wm.lejia.db.mapper.ProvinceMapper;
-import com.wm.lejia.pojo.dto.DefProvinceDTO;
-import com.wm.lejia.pojo.entity.City;
-import com.wm.lejia.pojo.entity.DefCity;
-import com.wm.lejia.pojo.entity.Province;
-import com.wm.lejia.pojo.vo.ProvinceVO;
+import com.wm.lejia.common.pojo.dto.DefProvinceDTO;
+import com.wm.lejia.common.pojo.entity.City;
+import com.wm.lejia.common.pojo.entity.DefCity;
+import com.wm.lejia.common.pojo.entity.Province;
+import com.wm.lejia.common.pojo.vo.ProvinceVO;
 import com.wm.lejia.service.CityService;
 
 @Service

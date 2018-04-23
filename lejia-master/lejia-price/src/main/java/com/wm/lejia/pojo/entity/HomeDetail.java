@@ -92,4 +92,12 @@ public class HomeDetail {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
+
+	@Override
+	public String toString() {
+		return "HomeDetail [homeDetailId=" + homeDetailId + ", homeId=" + homeId + ", homeDetailType=" + homeDetailType
+				+ ", decorationId=" + decorationId + ", createdTime=" + createdTime + ", createdBy=" + createdBy
+				+ ", updatedTime=" + updatedTime + ", updatedBy=" + updatedBy + ", isDeleted=" + isDeleted + "]";
+	}
+    
 }

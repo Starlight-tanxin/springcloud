@@ -27,6 +27,14 @@ public class Banner {
 
     private Integer isDeleted;
 
+    private Integer isData;
+
+    private Integer showType;
+
+    private String applyPage;
+
+    private Integer isUp;
+
     private String bannerDetail;
 
     public Integer getBannerId() {
@@ -125,6 +133,38 @@ public class Banner {
         this.isDeleted = isDeleted;
     }
 
+    public Integer getIsData() {
+        return isData;
+    }
+
+    public void setIsData(Integer isData) {
+        this.isData = isData;
+    }
+
+    public Integer getShowType() {
+        return showType;
+    }
+
+    public void setShowType(Integer showType) {
+        this.showType = showType;
+    }
+
+    public String getApplyPage() {
+        return applyPage;
+    }
+
+    public void setApplyPage(String applyPage) {
+        this.applyPage = applyPage == null ? null : applyPage.trim();
+    }
+
+    public Integer getIsUp() {
+        return isUp;
+    }
+
+    public void setIsUp(Integer isUp) {
+        this.isUp = isUp;
+    }
+
     public String getBannerDetail() {
         return bannerDetail;
     }
@@ -132,4 +172,15 @@ public class Banner {
     public void setBannerDetail(String bannerDetail) {
         this.bannerDetail = bannerDetail == null ? null : bannerDetail.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Banner [bannerId=" + bannerId + ", bannerTitle=" + bannerTitle + ", bannerImg=" + bannerImg + ", idx="
+				+ idx + ", type=" + type + ", provinceId=" + provinceId + ", cityId=" + cityId + ", createdTime="
+				+ createdTime + ", createdBy=" + createdBy + ", updatedTime=" + updatedTime + ", updatedBy=" + updatedBy
+				+ ", isDeleted=" + isDeleted + ", isData=" + isData + ", showType=" + showType + ", applyPage="
+				+ applyPage + ", isUp=" + isUp + ", bannerDetail=" + bannerDetail + "]";
+	}
+    
+    
 }

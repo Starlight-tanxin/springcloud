@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.wm.lejia.pojo.dto.DefProvinceDTO;
-import com.wm.lejia.pojo.entity.DefProvince;
+import com.wm.lejia.common.pojo.dto.DefProvinceDTO;
+import com.wm.lejia.common.pojo.entity.DefProvince;
 
 public interface DefProvinceMapper {
     int deleteByPrimaryKey(Integer defProvinceId);

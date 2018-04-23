@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.wm.lejia.pojo.entity.DefCity;
+import com.wm.lejia.common.pojo.entity.DefCity;
 
 public interface DefCityMapper {
     int deleteByPrimaryKey(Integer defCityId);

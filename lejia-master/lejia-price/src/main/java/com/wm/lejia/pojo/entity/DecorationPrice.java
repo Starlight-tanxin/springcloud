@@ -148,7 +148,7 @@ public class DecorationPrice {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
-
+    
 	public String getDecorationWord() {
 		return decorationWord;
 	}
@@ -172,4 +172,16 @@ public class DecorationPrice {
 	public void setDecorationName(String decorationName) {
 		this.decorationName = decorationName;
 	}
+
+	@Override
+	public String toString() {
+		return "DecorationPrice [decorationPriceId=" + decorationPriceId + ", decorationId=" + decorationId
+				+ ", provinceId=" + provinceId + ", cityId=" + cityId + ", region=" + region + ", laborUnitPrice="
+				+ laborUnitPrice + ", laborCalculatePrice=" + laborCalculatePrice + ", materialUnionPrice="
+				+ materialUnionPrice + ", materialCalculatePrice=" + materialCalculatePrice + ", createdTime="
+				+ createdTime + ", createdBy=" + createdBy + ", updatedTime=" + updatedTime + ", updatedBy=" + updatedBy
+				+ ", isDeleted=" + isDeleted + ", decorationWord=" + decorationWord + ", unit=" + unit
+				+ ", decorationName=" + decorationName + "]";
+	}
+
 }

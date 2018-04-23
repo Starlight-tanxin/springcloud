@@ -122,4 +122,14 @@ public class UserPrice {
     public void setTotalPriceId(Integer totalPriceId) {
         this.totalPriceId = totalPriceId;
     }
+
+	@Override
+	public String toString() {
+		return "UserPrice [userPriceId=" + userPriceId + ", region=" + region + ", decorationWord=" + decorationWord
+				+ ", unit=" + unit + ", decorationName=" + decorationName + ", numStr=" + numStr + ", price=" + price
+				+ ", unitPrice=" + unitPrice + ", createdBy=" + createdBy + ", createdTime=" + createdTime
+				+ ", isDeleted=" + isDeleted + ", totalPriceId=" + totalPriceId + "]";
+	}
+    
+    
 }

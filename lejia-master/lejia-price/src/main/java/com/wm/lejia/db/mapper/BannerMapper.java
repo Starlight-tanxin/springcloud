@@ -1,6 +1,8 @@
 package com.wm.lejia.db.mapper;
 
-import com.wm.lejia.pojo.entity.Banner;
+import java.util.List;
+
+import com.wm.lejia.common.pojo.entity.Banner;
 
 public interface BannerMapper {
     int deleteByPrimaryKey(Integer bannerId);
@@ -16,4 +18,7 @@ public interface BannerMapper {
     int updateByPrimaryKeyWithBLOBs(Banner record);
 
     int updateByPrimaryKey(Banner record);
+    
+    // tx 18/4/23
+    List<Banner> listBannerByHome(Banner banner);
 }

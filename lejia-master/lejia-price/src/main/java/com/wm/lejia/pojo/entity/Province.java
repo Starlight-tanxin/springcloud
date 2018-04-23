@@ -1,5 +1,7 @@
 package com.wm.lejia.pojo.entity;
 
+import java.util.Date;
+
 public class Province {
     private Integer provinceId;
 
@@ -10,6 +12,18 @@ public class Province {
     private String provinceCode;
 
     private Integer isDeleted;
+
+    private Integer isUp;
+
+    private Integer isDefault;
+
+    private Integer createdBy;
+
+    private Date createdTime;
+
+    private Integer updatedBy;
+
+    private Date updatedTime;
 
     public Integer getProvinceId() {
         return provinceId;
@@ -50,4 +64,61 @@ public class Province {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
+
+    public Integer getIsUp() {
+        return isUp;
+    }
+
+    public void setIsUp(Integer isUp) {
+        this.isUp = isUp;
+    }
+
+    public Integer getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(Integer isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    public Integer getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Integer getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Integer updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+	@Override
+	public String toString() {
+		return "Province [provinceId=" + provinceId + ", provinceName=" + provinceName + ", area=" + area
+				+ ", provinceCode=" + provinceCode + ", isDeleted=" + isDeleted + ", isUp=" + isUp + ", isDefault="
+				+ isDefault + ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", updatedBy=" + updatedBy
+				+ ", updatedTime=" + updatedTime + "]";
+	}
+    
 }

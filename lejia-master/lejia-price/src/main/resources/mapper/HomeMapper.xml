@@ -44,7 +44,7 @@
       #{removeWallNum,jdbcType=INTEGER}, #{addWallNum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.Home" >
-  	<selectKey keyColumn="home_id" keyProperty="homeId" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyColumn="home_id" keyProperty="homeId" order="AFTER" resultType="java.lang.Integer">
   		SELECT LAST_INSERT_ID()
   	</selectKey>
     insert into home

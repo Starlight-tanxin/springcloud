@@ -2,12 +2,12 @@ package com.wm.lejia.service;
 
 import java.util.List;
 
-import com.wm.lejia.pojo.dto.CalculationPriceDTO;
-import com.wm.lejia.pojo.entity.Home;
-import com.wm.lejia.pojo.entity.HomeDetail;
-import com.wm.lejia.pojo.entity.TotalPrice;
-import com.wm.lejia.pojo.entity.UserPrice;
-import com.wm.lejia.pojo.vo.TotalPriceVO;
+import com.wm.lejia.common.pojo.dto.CalculationPriceDTO;
+import com.wm.lejia.common.pojo.entity.Home;
+import com.wm.lejia.common.pojo.entity.HomeDetail;
+import com.wm.lejia.common.pojo.entity.TotalPrice;
+import com.wm.lejia.common.pojo.entity.UserPrice;
+import com.wm.lejia.common.pojo.vo.TotalPriceVO;
 
 public interface PriceService {
 	

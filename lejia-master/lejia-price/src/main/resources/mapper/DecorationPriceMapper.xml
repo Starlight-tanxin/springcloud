@@ -199,7 +199,7 @@
       is_deleted = #{isDeleted,jdbcType=INTEGER}
     where decoration_price_id = #{decorationPriceId,jdbcType=INTEGER}
   </update>
-  
+  <!-- tx 4/19 -->
   <resultMap type="com.wm.lejia.pojo.entity.DecorationPrice" id="BaseResultMapTwo" extends="BaseResultMap">
   	<result column="decoration_word" property="decorationWord" jdbcType="VARCHAR" />
     <result column="unit" property="unit" jdbcType="CHAR" />
@@ -216,5 +216,5 @@
   	<if test="cityId != null">
   		AND dp.city_id = #{cityId}
   	</if>
-  </select>
+  </select>  
 </mapper>

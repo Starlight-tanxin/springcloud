@@ -14,13 +14,18 @@
     <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
     <result column="updated_by" property="updatedBy" jdbcType="INTEGER" />
     <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+    <result column="is_data" property="isData" jdbcType="INTEGER" />
+    <result column="show_type" property="showType" jdbcType="INTEGER" />
+    <result column="apply_page" property="applyPage" jdbcType="VARCHAR" />
+    <result column="is_up" property="isUp" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.wm.lejia.pojo.entity.Banner" extends="BaseResultMap" >
     <result column="banner_detail" property="bannerDetail" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     banner_id, banner_title, banner_img, idx, type, province_id, city_id, created_time, 
-    created_by, updated_time, updated_by, is_deleted
+    created_by, updated_time, updated_by, is_deleted, is_data, show_type, apply_page, 
+    is_up
   </sql>
   <sql id="Blob_Column_List" >
     banner_detail
@@ -42,12 +47,14 @@
       idx, type, province_id, 
       city_id, created_time, created_by, 
       updated_time, updated_by, is_deleted, 
-      banner_detail)
+      is_data, show_type, apply_page, 
+      is_up, banner_detail)
     values (#{bannerId,jdbcType=INTEGER}, #{bannerTitle,jdbcType=VARCHAR}, #{bannerImg,jdbcType=VARCHAR}, 
       #{idx,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{provinceId,jdbcType=INTEGER}, 
       #{cityId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, 
       #{updatedTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=INTEGER}, #{isDeleted,jdbcType=INTEGER}, 
-      #{bannerDetail,jdbcType=LONGVARCHAR})
+      #{isData,jdbcType=INTEGER}, #{showType,jdbcType=INTEGER}, #{applyPage,jdbcType=VARCHAR}, 
+      #{isUp,jdbcType=INTEGER}, #{bannerDetail,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.Banner" >
     insert into banner
@@ -87,6 +94,18 @@
       </if>
       <if test="isDeleted != null" >
         is_deleted,
+      </if>
+      <if test="isData != null" >
+        is_data,
+      </if>
+      <if test="showType != null" >
+        show_type,
+      </if>
+      <if test="applyPage != null" >
+        apply_page,
+      </if>
+      <if test="isUp != null" >
+        is_up,
       </if>
       <if test="bannerDetail != null" >
         banner_detail,
@@ -129,6 +148,18 @@
       <if test="isDeleted != null" >
         #{isDeleted,jdbcType=INTEGER},
       </if>
+      <if test="isData != null" >
+        #{isData,jdbcType=INTEGER},
+      </if>
+      <if test="showType != null" >
+        #{showType,jdbcType=INTEGER},
+      </if>
+      <if test="applyPage != null" >
+        #{applyPage,jdbcType=VARCHAR},
+      </if>
+      <if test="isUp != null" >
+        #{isUp,jdbcType=INTEGER},
+      </if>
       <if test="bannerDetail != null" >
         #{bannerDetail,jdbcType=LONGVARCHAR},
       </if>
@@ -170,6 +201,18 @@
       <if test="isDeleted != null" >
         is_deleted = #{isDeleted,jdbcType=INTEGER},
       </if>
+      <if test="isData != null" >
+        is_data = #{isData,jdbcType=INTEGER},
+      </if>
+      <if test="showType != null" >
+        show_type = #{showType,jdbcType=INTEGER},
+      </if>
+      <if test="applyPage != null" >
+        apply_page = #{applyPage,jdbcType=VARCHAR},
+      </if>
+      <if test="isUp != null" >
+        is_up = #{isUp,jdbcType=INTEGER},
+      </if>
       <if test="bannerDetail != null" >
         banner_detail = #{bannerDetail,jdbcType=LONGVARCHAR},
       </if>
@@ -189,6 +232,10 @@
       updated_time = #{updatedTime,jdbcType=TIMESTAMP},
       updated_by = #{updatedBy,jdbcType=INTEGER},
       is_deleted = #{isDeleted,jdbcType=INTEGER},
+      is_data = #{isData,jdbcType=INTEGER},
+      show_type = #{showType,jdbcType=INTEGER},
+      apply_page = #{applyPage,jdbcType=VARCHAR},
+      is_up = #{isUp,jdbcType=INTEGER},
       banner_detail = #{bannerDetail,jdbcType=LONGVARCHAR}
     where banner_id = #{bannerId,jdbcType=INTEGER}
   </update>
@@ -204,7 +251,27 @@
       created_by = #{createdBy,jdbcType=INTEGER},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP},
       updated_by = #{updatedBy,jdbcType=INTEGER},
-      is_deleted = #{isDeleted,jdbcType=INTEGER}
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      is_data = #{isData,jdbcType=INTEGER},
+      show_type = #{showType,jdbcType=INTEGER},
+      apply_page = #{applyPage,jdbcType=VARCHAR},
+      is_up = #{isUp,jdbcType=INTEGER}
     where banner_id = #{bannerId,jdbcType=INTEGER}
   </update>
+  
+  <!-- tx 18/4/23 -->
+  <select id="listBannerByHome" parameterType="com.wm.lejia.pojo.entity.Banner" resultMap="ResultMapWithBLOBs">
+  	SELECT * FROM banner WHERE 1=1 
+  	AND is_up = 1 AND is_deleted = 0
+  	<if test="applyPage != null">
+  		AND apply_page = #{applyPage}
+  	</if>
+  	<if test="provinceId != null">
+  		AND province_id = #{provinceId}
+  	</if>
+  	<if test="cityId != null">
+  		AND city_id = #{cityId}
+  	</if>
+  	ORDER BY idx ASC
+  </select>
 </mapper>

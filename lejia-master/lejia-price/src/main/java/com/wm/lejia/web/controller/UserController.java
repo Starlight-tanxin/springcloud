@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wm.lejia.pojo.dto.UserDTO;
-import com.wm.lejia.pojo.entity.User;
+import com.wm.lejia.common.pojo.dto.UserDTO;
+import com.wm.lejia.common.pojo.entity.User;
 import com.wm.lejia.service.UserService;
 import com.wm.lejia.common.utils.Result;
 

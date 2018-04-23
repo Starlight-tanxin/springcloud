@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wm.lejia.common.constant.Constants;
+import com.wm.lejia.common.pojo.dto.LoginDTO;
 import com.wm.lejia.db.mapper.UserMapper;
-import com.wm.lejia.pojo.dto.UserDTO;
-import com.wm.lejia.pojo.entity.User;
+import com.wm.lejia.common.pojo.dto.UserDTO;
+import com.wm.lejia.common.pojo.entity.User;
 import com.wm.lejia.service.UserService;
 import com.wm.lejia.common.utils.StringUtils;
 import com.wm.lejia.common.utils.sign.MD5Utils;
@@ -50,6 +51,28 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			//e.printStackTrace();
 			log.error("UserService getUser 查找数据错误",e);
+		}
+		return null;
+	}
+
+	@Override
+	public User login(LoginDTO dto) {
+		String mobile = dto.getMobile();
+		String msmCode = dto.getMsmCode();
+		if(!msmCode.equals("1234")) {
+			return null;
+		}
+		UserDTO userDTO = new UserDTO();
+		userDTO.setMobile(mobile);
+		try {
+			List<User> list = userMapper.getUserByMobileOROpenid(userDTO);
+			if(list == null || list.size() == 0) {
+				return null;
+			}
+			return list.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("UserServiceImpl login ===> 查询出错",e);
 		}
 		return null;
 	}

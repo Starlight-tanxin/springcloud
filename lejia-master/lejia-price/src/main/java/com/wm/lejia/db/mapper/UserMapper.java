@@ -2,8 +2,8 @@ package com.wm.lejia.db.mapper;
 
 import java.util.List;
 
-import com.wm.lejia.pojo.dto.UserDTO;
-import com.wm.lejia.pojo.entity.User;
+import com.wm.lejia.common.pojo.dto.UserDTO;
+import com.wm.lejia.common.pojo.entity.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);

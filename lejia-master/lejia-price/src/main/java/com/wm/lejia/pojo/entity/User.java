@@ -120,4 +120,6 @@ public class User {
 				+ ", createdBy=" + createdBy + ", updatedTime=" + updatedTime + ", updatedBy=" + updatedBy
 				+ ", isDeleted=" + isDeleted + "]";
 	}
+    
+    
 }

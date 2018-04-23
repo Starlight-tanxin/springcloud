@@ -1,7 +1,8 @@
 package com.wm.lejia.service;
 
-import com.wm.lejia.pojo.dto.UserDTO;
-import com.wm.lejia.pojo.entity.User;
+import com.wm.lejia.common.pojo.dto.LoginDTO;
+import com.wm.lejia.common.pojo.dto.UserDTO;
+import com.wm.lejia.common.pojo.entity.User;
 
 public interface UserService {
 	
@@ -21,4 +22,7 @@ public interface UserService {
 
 	
 	User getUser(UserDTO dto);
+	
+	
+	User login(LoginDTO dto);
 }

@@ -30,6 +30,12 @@ public class DecorationPrice {
     private Integer updatedBy;
 
     private Integer isDeleted;
+    
+    private String decorationWord;
+
+    private String unit;
+
+    private String decorationName;
 
     public Integer getDecorationPriceId() {
         return decorationPriceId;
@@ -142,4 +148,41 @@ public class DecorationPrice {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
+
+	public String getDecorationWord() {
+		return decorationWord;
+	}
+
+	public void setDecorationWord(String decorationWord) {
+		this.decorationWord = decorationWord;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+	public String getDecorationName() {
+		return decorationName;
+	}
+
+	public void setDecorationName(String decorationName) {
+		this.decorationName = decorationName;
+	}
+
+	@Override
+	public String toString() {
+		return "DecorationPrice [decorationPriceId=" + decorationPriceId + ", decorationId=" + decorationId
+				+ ", provinceId=" + provinceId + ", cityId=" + cityId + ", region=" + region + ", laborUnitPrice="
+				+ laborUnitPrice + ", laborCalculatePrice=" + laborCalculatePrice + ", materialUnionPrice="
+				+ materialUnionPrice + ", materialCalculatePrice=" + materialCalculatePrice + ", createdTime="
+				+ createdTime + ", createdBy=" + createdBy + ", updatedTime=" + updatedTime + ", updatedBy=" + updatedBy
+				+ ", isDeleted=" + isDeleted + ", decorationWord=" + decorationWord + ", unit=" + unit
+				+ ", decorationName=" + decorationName + "]";
+	}
+    
+    
 }

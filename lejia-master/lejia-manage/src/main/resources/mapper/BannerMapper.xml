@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wm.lejia.db.mapper.BannerMapper" >
-  <resultMap id="BaseResultMap" type="com.wm.lejia.common.pojo.entity.Banner" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.pojo.entity.Banner" >
     <id column="banner_id" property="bannerId" jdbcType="INTEGER" />
     <result column="banner_title" property="bannerTitle" jdbcType="VARCHAR" />
     <result column="banner_img" property="bannerImg" jdbcType="VARCHAR" />
@@ -17,13 +17,15 @@
     <result column="is_data" property="isData" jdbcType="INTEGER" />
     <result column="show_type" property="showType" jdbcType="INTEGER" />
     <result column="apply_page" property="applyPage" jdbcType="VARCHAR" />
+    <result column="is_up" property="isUp" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.wm.lejia.common.pojo.entity.Banner" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.wm.lejia.pojo.entity.Banner" extends="BaseResultMap" >
     <result column="banner_detail" property="bannerDetail" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     banner_id, banner_title, banner_img, idx, type, province_id, city_id, created_time, 
-    created_by, updated_time, updated_by, is_deleted, is_data, show_type, apply_page
+    created_by, updated_time, updated_by, is_deleted, is_data, show_type, apply_page, 
+    is_up
   </sql>
   <sql id="Blob_Column_List" >
     banner_detail
@@ -40,21 +42,21 @@
     delete from banner
     where banner_id = #{bannerId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.wm.lejia.common.pojo.entity.Banner" >
+  <insert id="insert" parameterType="com.wm.lejia.pojo.entity.Banner" >
     insert into banner (banner_id, banner_title, banner_img, 
       idx, type, province_id, 
       city_id, created_time, created_by, 
       updated_time, updated_by, is_deleted, 
       is_data, show_type, apply_page, 
-      banner_detail)
+      is_up, banner_detail)
     values (#{bannerId,jdbcType=INTEGER}, #{bannerTitle,jdbcType=VARCHAR}, #{bannerImg,jdbcType=VARCHAR}, 
       #{idx,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{provinceId,jdbcType=INTEGER}, 
       #{cityId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, 
       #{updatedTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=INTEGER}, #{isDeleted,jdbcType=INTEGER}, 
       #{isData,jdbcType=INTEGER}, #{showType,jdbcType=INTEGER}, #{applyPage,jdbcType=VARCHAR}, 
-      #{bannerDetail,jdbcType=LONGVARCHAR})
+      #{isUp,jdbcType=INTEGER}, #{bannerDetail,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wm.lejia.common.pojo.entity.Banner" >
+  <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.Banner" >
     insert into banner
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="bannerId != null" >
@@ -101,6 +103,9 @@
       </if>
       <if test="applyPage != null" >
         apply_page,
+      </if>
+      <if test="isUp != null" >
+        is_up,
       </if>
       <if test="bannerDetail != null" >
         banner_detail,
@@ -152,12 +157,15 @@
       <if test="applyPage != null" >
         #{applyPage,jdbcType=VARCHAR},
       </if>
+      <if test="isUp != null" >
+        #{isUp,jdbcType=INTEGER},
+      </if>
       <if test="bannerDetail != null" >
         #{bannerDetail,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.common.pojo.entity.Banner" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.pojo.entity.Banner" >
     update banner
     <set >
       <if test="bannerTitle != null" >
@@ -202,13 +210,16 @@
       <if test="applyPage != null" >
         apply_page = #{applyPage,jdbcType=VARCHAR},
       </if>
+      <if test="isUp != null" >
+        is_up = #{isUp,jdbcType=INTEGER},
+      </if>
       <if test="bannerDetail != null" >
         banner_detail = #{bannerDetail,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where banner_id = #{bannerId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wm.lejia.common.pojo.entity.Banner" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wm.lejia.pojo.entity.Banner" >
     update banner
     set banner_title = #{bannerTitle,jdbcType=VARCHAR},
       banner_img = #{bannerImg,jdbcType=VARCHAR},
@@ -224,10 +235,11 @@
       is_data = #{isData,jdbcType=INTEGER},
       show_type = #{showType,jdbcType=INTEGER},
       apply_page = #{applyPage,jdbcType=VARCHAR},
+      is_up = #{isUp,jdbcType=INTEGER},
       banner_detail = #{bannerDetail,jdbcType=LONGVARCHAR}
     where banner_id = #{bannerId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.common.pojo.entity.Banner" >
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.pojo.entity.Banner" >
     update banner
     set banner_title = #{bannerTitle,jdbcType=VARCHAR},
       banner_img = #{bannerImg,jdbcType=VARCHAR},
@@ -242,7 +254,27 @@
       is_deleted = #{isDeleted,jdbcType=INTEGER},
       is_data = #{isData,jdbcType=INTEGER},
       show_type = #{showType,jdbcType=INTEGER},
-      apply_page = #{applyPage,jdbcType=VARCHAR}
+      apply_page = #{applyPage,jdbcType=VARCHAR},
+      is_up = #{isUp,jdbcType=INTEGER}
     where banner_id = #{bannerId,jdbcType=INTEGER}
   </update>
+  
+  <!-- tx 18/4/23 -->
+  <select id="listBannerBack" parameterType="com.wm.lejia.common.pojo.dto.SeaBannerDTO" resultType="com.wm.lejia.common.pojo.vo.BannerVO">
+  	SELECT b.banner_id AS bannerId,b.banner_title AS bannerTitle,p.province_name AS provinceName,
+	c.city_name AS cityName,b.apply_page AS applyPage,m.nickname,b.created_time AS createdTime,b.is_up AS isUp FROM banner b 
+	LEFT OUTER JOIN province p ON p.province_id = b.province_id
+	LEFT OUTER JOIN city c ON c.city_id = b.city_id
+	LEFT OUTER JOIN manage m ON b.created_by = m.manage_id
+	<if test="bannerTitle != null">
+		AND b.banner_title LIKE CONCAT('%',#{bannerTitle},'%')
+	</if>
+	<if test="cityId != null">
+		AND b.city_id = #{cityId}
+	</if>
+	<if test="isData != null">
+		AND b.is_data = #{isData}
+	</if>
+	ORDER BY b.created_time DESC
+  </select>
 </mapper>

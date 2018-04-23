@@ -1,6 +1,10 @@
 package com.wm.lejia.manage.db.mapper;
 
+import java.util.List;
+
+import com.wm.lejia.common.pojo.dto.SeaBannerDTO;
 import com.wm.lejia.common.pojo.entity.Banner;
+import com.wm.lejia.common.pojo.vo.BannerVO;
 
 public interface BannerMapper {
     int deleteByPrimaryKey(Integer bannerId);
@@ -16,4 +20,6 @@ public interface BannerMapper {
     int updateByPrimaryKeyWithBLOBs(Banner record);
 
     int updateByPrimaryKey(Banner record);
+    
+    List<BannerVO> listBannerBack(SeaBannerDTO dto);
 }

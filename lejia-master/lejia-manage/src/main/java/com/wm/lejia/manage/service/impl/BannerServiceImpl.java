@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wm.lejia.common.pojo.dto.SeaBannerDTO;
+import com.wm.lejia.common.pojo.vo.BannerVO;
 import com.wm.lejia.manage.db.mapper.BannerMapper;
 import com.wm.lejia.manage.db.mapper.BannerUserMapper;
 import com.wm.lejia.manage.service.BannerService;
@@ -15,8 +16,7 @@ import com.wm.lejia.manage.service.BannerService;
 @Service
 public class BannerServiceImpl implements BannerService {
 	
-	@Autowired
-	private Logger log = LoggerFactory.getLogger(BannerServiceImpl.class);
+	private static Logger log = LoggerFactory.getLogger(BannerServiceImpl.class);
 	
 	@Autowired
 	private BannerMapper bannerMapper;
@@ -25,8 +25,17 @@ public class BannerServiceImpl implements BannerService {
 	private BannerUserMapper bannerUserMapper;
 
 	@Override
-	public List<Object> listBanner(SeaBannerDTO dto) {
-		
+	public List<BannerVO> listBanner(SeaBannerDTO dto) {
+		try {
+			List<BannerVO> list = bannerMapper.listBannerBack(dto);
+			if(list == null || list.size() == 0) {
+				return null;
+			}
+			return list;
+		} catch (Exception e) {
+			//e.printStackTrace();
+			log.error("BannerServiceImpl listBanner ===> 查询出错",e);
+		}
 		return null;
 	}
 }

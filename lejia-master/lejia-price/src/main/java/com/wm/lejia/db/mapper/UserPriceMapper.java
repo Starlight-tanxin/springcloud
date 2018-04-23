@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.wm.lejia.pojo.entity.UserPrice;
+import com.wm.lejia.common.pojo.entity.UserPrice;
 
 public interface UserPriceMapper {
     int deleteByPrimaryKey(Integer userPriceId);

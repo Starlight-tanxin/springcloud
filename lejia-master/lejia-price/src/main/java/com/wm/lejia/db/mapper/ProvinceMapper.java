@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.wm.lejia.pojo.entity.Province;
-import com.wm.lejia.pojo.vo.ProvinceVO;
+import com.wm.lejia.common.pojo.entity.Province;
+import com.wm.lejia.common.pojo.vo.ProvinceVO;
 
 public interface ProvinceMapper {
     int deleteByPrimaryKey(Integer provinceId);

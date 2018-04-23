@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wm.lejia.pojo.dto.DefProvinceDTO;
-import com.wm.lejia.pojo.entity.City;
-import com.wm.lejia.pojo.entity.Province;
-import com.wm.lejia.pojo.vo.ProvinceVO;
+import com.wm.lejia.common.pojo.dto.DefProvinceDTO;
+import com.wm.lejia.common.pojo.entity.City;
+import com.wm.lejia.common.pojo.entity.Province;
+import com.wm.lejia.common.pojo.vo.ProvinceVO;
 import com.wm.lejia.service.CityService;
 import com.wm.lejia.common.utils.Result;
 import com.wm.lejia.common.utils.ResultCode;

@@ -3,7 +3,7 @@ package com.wm.lejia.db.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.wm.lejia.pojo.entity.HomeDetail;
+import com.wm.lejia.common.pojo.entity.HomeDetail;
 
 public interface HomeDetailMapper {
     int deleteByPrimaryKey(Integer homeDetailId);

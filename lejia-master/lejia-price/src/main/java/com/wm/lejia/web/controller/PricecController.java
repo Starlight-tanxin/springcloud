@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wm.lejia.pojo.dto.CalculationPriceDTO;
-import com.wm.lejia.pojo.entity.Home;
-import com.wm.lejia.pojo.entity.HomeDetail;
-import com.wm.lejia.pojo.entity.TotalPrice;
-import com.wm.lejia.pojo.entity.UserPrice;
-import com.wm.lejia.pojo.vo.TotalPriceVO;
+import com.wm.lejia.common.pojo.dto.CalculationPriceDTO;
+import com.wm.lejia.common.pojo.entity.Home;
+import com.wm.lejia.common.pojo.entity.HomeDetail;
+import com.wm.lejia.common.pojo.entity.TotalPrice;
+import com.wm.lejia.common.pojo.entity.UserPrice;
+import com.wm.lejia.common.pojo.vo.TotalPriceVO;
 import com.wm.lejia.service.PriceService;
 import com.wm.lejia.common.utils.Result;
 

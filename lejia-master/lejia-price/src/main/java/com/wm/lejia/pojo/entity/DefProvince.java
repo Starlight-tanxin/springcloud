@@ -4,7 +4,7 @@ public class DefProvince {
     private Integer defProvinceId;
 
     private String defProvinceName;
-    
+
     public Integer getDefProvinceId() {
         return defProvinceId;
     }
@@ -20,4 +20,10 @@ public class DefProvince {
     public void setDefProvinceName(String defProvinceName) {
         this.defProvinceName = defProvinceName == null ? null : defProvinceName.trim();
     }
+
+	@Override
+	public String toString() {
+		return "DefProvince [defProvinceId=" + defProvinceId + ", defProvinceName=" + defProvinceName + "]";
+	}
+    
 }

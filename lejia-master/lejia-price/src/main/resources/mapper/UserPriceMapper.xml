@@ -175,6 +175,8 @@
     where user_price_id = #{userPriceId,jdbcType=INTEGER}
   </update>
   
+  
+  
   <insert id="insertBatchPrice" parameterType="java.util.List">
   	insert into user_price ( region, decoration_word, unit, decoration_name, num_str,
   	price, unit_price, created_by, created_time, total_price_id )

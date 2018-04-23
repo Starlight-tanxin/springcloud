@@ -3,7 +3,7 @@ package com.wm.lejia.db.mapper;
 import java.util.List;
 import java.util.Map;
 
-import com.wm.lejia.pojo.entity.DecorationPrice;
+import com.wm.lejia.common.pojo.entity.DecorationPrice;
 
 public interface DecorationPriceMapper {
     int deleteByPrimaryKey(Integer decorationPriceId);
