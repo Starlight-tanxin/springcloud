@@ -13,6 +13,8 @@ import com.wm.lejia.db.mapper.UserMapper;
 import com.wm.lejia.common.pojo.dto.UserDTO;
 import com.wm.lejia.common.pojo.entity.User;
 import com.wm.lejia.service.UserService;
+import com.wm.lejia.common.utils.Result;
+import com.wm.lejia.common.utils.ResultCode;
 import com.wm.lejia.common.utils.StringUtils;
 import com.wm.lejia.common.utils.sign.MD5Utils;
 
@@ -56,25 +58,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User login(LoginDTO dto) {
+	public Result<User> login(LoginDTO dto) {
 		String mobile = dto.getMobile();
 		String msmCode = dto.getMsmCode();
 		if(!msmCode.equals("1234")) {
-			return null;
+			return new Result<User>(ResultCode.CODE_ERROR);
 		}
 		UserDTO userDTO = new UserDTO();
 		userDTO.setMobile(mobile);
 		try {
 			List<User> list = userMapper.getUserByMobileOROpenid(userDTO);
 			if(list == null || list.size() == 0) {
-				return null;
+				return new Result<User>(ResultCode.ACCOUNT_NO_EXIT);
 			}
-			return list.get(0);
+			return new Result<User>(list.get(0));
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("UserServiceImpl login ===> 查询出错",e);
 		}
-		return null;
+		return new Result<User>(ResultCode.QUERY_ERROR);
 	}
 	
 	
