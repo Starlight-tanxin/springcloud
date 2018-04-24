@@ -69,7 +69,7 @@ public class PricecController {
 	 @PostMapping("/createPriceItem")
 	 public Result<Boolean> createPriceItem(@RequestBody List<UserPrice> list){
 		 Boolean b = priceService.createPriceItem(list);
-		 if(b.booleanValue()) {
+		 if(!b.booleanValue()) {
 			 return new Result<Boolean>(ResultCode.INSERT_ERROR,b);
 		 }
 		 return new Result<Boolean>(b);

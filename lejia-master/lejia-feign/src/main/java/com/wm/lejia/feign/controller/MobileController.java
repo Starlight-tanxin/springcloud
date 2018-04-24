@@ -51,7 +51,7 @@ public class MobileController {
 		Result<User> checkUser = priceFeignClient.checkUser(userDTO);
 		User data = checkUser.getData();
 		User user = null;
-		if(data == null) {
+		if(ObjectUtils.isEmpty(data)) {
 			Result<User> regUser = priceFeignClient.regUser(userDTO);
 			user =  regUser.getData();
 		} else {
@@ -72,7 +72,7 @@ public class MobileController {
 		Integer homeId = details.get(0).getHomeId();
 		Integer createdBy = details.get(0).getCreatedBy();
 		ServicePriceCalculationPriceDTO calculationPriceDTO = priceFeignClient.getHome(homeId);
-		if(calculationPriceDTO == null) {
+		if(ObjectUtils.isEmpty(calculationPriceDTO)) {
 			return new Result<String>(ResultCode.DATA_NOT_EXIST);
 		}
 		details = ServiceUtils.createHomeDetail(homeId, createdBy, details, calculationPriceDTO);
@@ -124,10 +124,7 @@ public class MobileController {
 			pDTO.setTotalPriceId(tp.getTotalPriceId());
 		}
 		Result<Boolean> createPriceItemResult = priceFeignClient.createPriceItem(priceDTOs);
-		if(createPriceItemResult.getCode() != 200) {
-			return createPriceItemResult;
-		}
-		return new Result<String>();
+		return createPriceItemResult;
 	}
 	
 	@PostMapping("/listTotalPrice")
