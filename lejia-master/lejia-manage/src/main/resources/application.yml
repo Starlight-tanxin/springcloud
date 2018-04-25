@@ -31,3 +31,8 @@ mybatis:
     configLocation: classpath:/mybatis-config.xml
     type-aliases-package: com.wm.lejia.common.pojo
     mapper-locations: classpath:com/wm/lejia/common/db/sql/*.xml
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

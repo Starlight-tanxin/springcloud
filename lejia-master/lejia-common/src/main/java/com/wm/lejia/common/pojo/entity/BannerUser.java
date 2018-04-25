@@ -1,5 +1,7 @@
 package com.wm.lejia.common.pojo.entity;
 
+import java.util.Date;
+
 public class BannerUser {
     private Integer bannerUserId;
 
@@ -16,6 +18,8 @@ public class BannerUser {
     private Integer cityId;
 
     private Integer provinceId;
+    
+    private Date createdTime;
 
     public Integer getBannerUserId() {
         return bannerUserId;
@@ -80,4 +84,20 @@ public class BannerUser {
     public void setProvinceId(Integer provinceId) {
         this.provinceId = provinceId;
     }
+
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+
+	@Override
+	public String toString() {
+		return "BannerUser [bannerUserId=" + bannerUserId + ", bannerId=" + bannerId + ", userId=" + userId
+				+ ", nickname=" + nickname + ", mobile=" + mobile + ", wechatOpenid=" + wechatOpenid + ", cityId="
+				+ cityId + ", provinceId=" + provinceId + ", createdTime=" + createdTime + "]";
+	}
+    
 }

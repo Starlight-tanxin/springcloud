@@ -1,5 +1,6 @@
 package com.wm.lejia.manage.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -38,6 +39,10 @@ public class CityServiceImpl implements CityService {
 	@Override
 	public Province createProvince(Province province) {
 		try {
+			if(province.getIsDefault() == 1) {
+				provinceMapper.updateDefault();
+			}
+			province.setCreatedTime(new Date());
 			int rows = provinceMapper.insertSelective(province);
 			if (rows > 0) {
 				return province;
@@ -52,6 +57,10 @@ public class CityServiceImpl implements CityService {
 	@Override
 	public City createCity(City city) {
 		try {
+			if(city.getIsDefault() == 1) {
+				cityMapper.updateDefault();
+			}
+			city.setCreatedTime(new Date());
 			int rows = cityMapper.insertSelective(city);
 			if (rows > 0) {
 				return city;
@@ -95,6 +104,10 @@ public class CityServiceImpl implements CityService {
 	public int updateCity(City city) {
 		int rows = 0;
 		 try {
+			if (city.getIsDefault() == 1) {
+				cityMapper.updateDefault();
+			}
+			city.setUpdatedTime(new Date());
 			rows = cityMapper.updateByPrimaryKeySelective(city);
 		} catch (Exception e) {
 		//	e.printStackTrace();
@@ -107,6 +120,10 @@ public class CityServiceImpl implements CityService {
 	public int updateProvince(Province province) {
 		int rows = 0;
 		try {
+			if(province.getIsDefault() == 1) {
+				provinceMapper.updateDefault();
+			}
+			province.setUpdatedTime(new Date());
 			rows = provinceMapper.updateByPrimaryKeySelective(province);
 		} catch (Exception e) {
 			//e.printStackTrace();

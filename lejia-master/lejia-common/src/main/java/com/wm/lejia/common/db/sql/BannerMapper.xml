@@ -57,6 +57,9 @@
       #{isUp,jdbcType=INTEGER}, #{bannerDetail,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wm.lejia.common.pojo.entity.Banner" >
+    <selectKey keyColumn="banner_id" keyProperty="bannerId" order="AFTER" resultType="java.lang.Integer">
+    	SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into banner
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="bannerId != null" >
