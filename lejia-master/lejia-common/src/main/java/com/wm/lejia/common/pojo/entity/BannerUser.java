@@ -2,88 +2,90 @@ package com.wm.lejia.common.pojo.entity;
 
 import java.util.Date;
 
+import com.wm.lejia.common.utils.StringUtils;
+
 public class BannerUser {
-    private Integer bannerUserId;
+	private Integer bannerUserId;
 
-    private Integer bannerId;
+	private Integer bannerId;
 
-    private Integer userId;
+	private Integer userId;
 
-    private String nickname;
+	private String nickname;
 
-    private String mobile;
+	private String mobile;
 
-    private String wechatOpenid;
+	private String wechatOpenid;
 
-    private Integer cityId;
+	private Integer cityId;
 
-    private Integer provinceId;
-    
-    private Date createdTime;
+	private Integer provinceId;
 
-    public Integer getBannerUserId() {
-        return bannerUserId;
-    }
+	private Date createdTime;
 
-    public void setBannerUserId(Integer bannerUserId) {
-        this.bannerUserId = bannerUserId;
-    }
+	public Integer getBannerUserId() {
+		return bannerUserId;
+	}
 
-    public Integer getBannerId() {
-        return bannerId;
-    }
+	public void setBannerUserId(Integer bannerUserId) {
+		this.bannerUserId = bannerUserId;
+	}
 
-    public void setBannerId(Integer bannerId) {
-        this.bannerId = bannerId;
-    }
+	public Integer getBannerId() {
+		return bannerId;
+	}
 
-    public Integer getUserId() {
-        return userId;
-    }
+	public void setBannerId(Integer bannerId) {
+		this.bannerId = bannerId;
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public Integer getUserId() {
+		return userId;
+	}
 
-    public String getNickname() {
-        return nickname;
-    }
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
-    }
+	public String getNickname() {
+		return nickname;
+	}
 
-    public String getMobile() {
-        return mobile;
-    }
+	public void setNickname(String nickname) {
+		this.nickname = nickname == null ? null : nickname.trim();
+	}
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
+	public String getMobile() {
+		return mobile;
+	}
 
-    public String getWechatOpenid() {
-        return wechatOpenid;
-    }
+	public void setMobile(String mobile) {
+		this.mobile = mobile == null ? null : mobile.trim();
+	}
 
-    public void setWechatOpenid(String wechatOpenid) {
-        this.wechatOpenid = wechatOpenid == null ? null : wechatOpenid.trim();
-    }
+	public String getWechatOpenid() {
+		return wechatOpenid;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public void setWechatOpenid(String wechatOpenid) {
+		this.wechatOpenid = wechatOpenid == null ? null : wechatOpenid.trim();
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public Integer getCityId() {
+		return cityId;
+	}
 
-    public Integer getProvinceId() {
-        return provinceId;
-    }
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
-    }
+	public Integer getProvinceId() {
+		return provinceId;
+	}
+
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
 
 	public Date getCreatedTime() {
 		return createdTime;
@@ -99,5 +101,12 @@ public class BannerUser {
 				+ ", nickname=" + nickname + ", mobile=" + mobile + ", wechatOpenid=" + wechatOpenid + ", cityId="
 				+ cityId + ", provinceId=" + provinceId + ", createdTime=" + createdTime + "]";
 	}
-    
+
+	public boolean isEmpty() {
+		if (StringUtils.isEmptyStr(nickname) || StringUtils.isEmptyStr(mobile) || cityId == null
+				|| provinceId == null) {
+			return true;
+		}
+		return false;
+	}
 }

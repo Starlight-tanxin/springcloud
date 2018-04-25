@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.wm.lejia.common.pojo.dto.SeaCityDTO;
 import com.wm.lejia.common.pojo.entity.City;
 import com.wm.lejia.common.pojo.vo.CityVO;
+import com.wm.lejia.common.pojo.vo.PriceCityVO;
 
 public interface CityMapper {
 	int deleteByPrimaryKey(Integer cityId);
@@ -30,4 +32,6 @@ public interface CityMapper {
 	
 	@Update("UPDATE city SET is_default = 0")
 	int updateDefault();
+	
+	List<PriceCityVO> listPriceCity(SeaCityDTO dto);
 }

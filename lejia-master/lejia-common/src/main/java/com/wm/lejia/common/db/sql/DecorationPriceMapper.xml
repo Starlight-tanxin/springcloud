@@ -207,16 +207,38 @@
     <result column="decoration_name" property="decorationName" jdbcType="VARCHAR" />
   </resultMap>
   
+  <!-- tx 4/23 -->
   <select id="getDecorationPriceByCondition" parameterType="java.util.Map" resultMap="BaseResultMapTwo">
   	SELECT dp.*,d.decoration_word,d.decoration_name,d.unit FROM decoration_price dp 
   	LEFT OUTER JOIN decoration d ON d.decoration_id = dp.decoration_id
-  	WHERE 1=1 
+  	WHERE 1=1 AND dp.is_deleted = 0
   	<if test="provinceId != null">
   		AND dp.province_id = #{provinceId}
   	</if>
   	<if test="cityId != null">
   		AND dp.city_id = #{cityId}
   	</if>
-  </select>  
+  </select>
+  
+  <!-- tx 4/25 -->
+  <insert id="insertBatchPrice">
+  	  insert into decoration_price (decoration_id, province_id, city_id, region, 
+      labor_unit_price, labor_calculate_price, material_union_price, 
+      material_calculate_price, created_time, created_by) values 
+      <foreach collection="list" item="item" index="index" separator=",">
+      	(
+      	#{item.decorationId,jdbcType=INTEGER},
+      	#{item.provinceId,jdbcType=INTEGER}, 
+      	#{item.cityId,jdbcType=INTEGER}, 
+      	#{item.region,jdbcType=CHAR},  
+      	#{item.laborUnitPrice,jdbcType=DOUBLE}, 
+      	#{item.laborCalculatePrice,jdbcType=DOUBLE}, 
+      	#{item.materialUnionPrice,jdbcType=DOUBLE}, 
+      	#{item.materialCalculatePrice,jdbcType=DOUBLE},
+       	NOW(), 
+       	#{item.createdBy,jdbcType=INTEGER}, 
+      	)
+      </foreach>
+  </insert> 
   
 </mapper>

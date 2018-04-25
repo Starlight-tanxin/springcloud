@@ -24,9 +24,9 @@ import com.wm.lejia.common.utils.ResultCode;
 
 @RestController
 @RequestMapping("/price")
-public class PricecController {
+public class PriceController {
 	
-	 private static Logger log = LoggerFactory.getLogger(PricecController.class);
+	 private static Logger log = LoggerFactory.getLogger(PriceController.class);
 	 
 	 @Autowired
 	 private PriceService priceService;

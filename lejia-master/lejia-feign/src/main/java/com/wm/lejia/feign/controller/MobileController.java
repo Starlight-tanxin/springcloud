@@ -111,6 +111,7 @@ public class MobileController {
 		totalPrice.setUserId(userId);
 		totalPrice.setCreatedBy(userId);
 		totalPrice.setCityId(totalPriceDTO.getCityId());
+		totalPrice.setSource(totalPriceDTO.getSource());
 		totalPrice.setProvinceId(totalPriceDTO.getProvinceId());
 		// 创建
 		Result<TotalPrice> createTotalPrice = priceFeignClient.createTotalPrice(totalPrice);

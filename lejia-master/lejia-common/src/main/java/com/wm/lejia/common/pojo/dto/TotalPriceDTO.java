@@ -13,6 +13,8 @@ public class TotalPriceDTO {
 	private Integer provinceId;
 	
 	private Integer cityId;
+	
+	private String source;
 
 	private List<PriceDTO> priceItem;
 
@@ -63,12 +65,20 @@ public class TotalPriceDTO {
 	public void setCityId(Integer cityId) {
 		this.cityId = cityId;
 	}
+	
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
 
 	@Override
 	public String toString() {
 		return "TotalPriceDTO [sumPrice=" + sumPrice + ", unitSumPrice=" + unitSumPrice + ", userId=" + userId
-				+ ", provinceId=" + provinceId + ", cityId=" + cityId + ", priceItem=" + priceItem + "]";
+				+ ", provinceId=" + provinceId + ", cityId=" + cityId + ", source=" + source + ", priceItem="
+				+ priceItem + "]";
 	}
-	
 	
 }

@@ -15,7 +15,7 @@ public class TotalPrice {
 
     private Integer userId;
 
-    private Integer source;
+    private String source;
 
     private Integer cityId;
 
@@ -69,15 +69,15 @@ public class TotalPrice {
         this.userId = userId;
     }
 
-    public Integer getSource() {
-        return source;
-    }
+    public String getSource() {
+		return source;
+	}
 
-    public void setSource(Integer source) {
-        this.source = source;
-    }
+	public void setSource(String source) {
+		this.source = source;
+	}
 
-    public Integer getCityId() {
+	public Integer getCityId() {
         return cityId;
     }
 
@@ -92,4 +92,12 @@ public class TotalPrice {
     public void setProvinceId(Integer provinceId) {
         this.provinceId = provinceId;
     }
+
+	@Override
+	public String toString() {
+		return "TotalPrice [totalPriceId=" + totalPriceId + ", createdTime=" + createdTime + ", createdBy=" + createdBy
+				+ ", total=" + total + ", unitTotal=" + unitTotal + ", userId=" + userId + ", source=" + source
+				+ ", cityId=" + cityId + ", provinceId=" + provinceId + "]";
+	}
+    
 }

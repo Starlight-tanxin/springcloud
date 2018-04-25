@@ -25,6 +25,10 @@ public class User {
 
     private Integer isDeleted;
 
+    private Integer cityId;
+    
+    private Integer provinceId;
+    
     public Integer getUserId() {
         return userId;
     }
@@ -112,4 +116,30 @@ public class User {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
+
+	public Integer getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
+
+	public Integer getProvinceId() {
+		return provinceId;
+	}
+
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", nickname=" + nickname + ", username=" + username + ", password=" + password
+				+ ", wechatOpenid=" + wechatOpenid + ", mobile=" + mobile + ", createdTime=" + createdTime
+				+ ", createdBy=" + createdBy + ", updatedTime=" + updatedTime + ", updatedBy=" + updatedBy
+				+ ", isDeleted=" + isDeleted + ", cityId=" + cityId + ", provinceId=" + provinceId + "]";
+	}
+    
+    
 }

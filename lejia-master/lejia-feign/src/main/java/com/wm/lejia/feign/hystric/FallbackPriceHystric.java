@@ -12,11 +12,13 @@ import com.wm.lejia.common.pojo.dto.ServicePriceCalculationPriceDTO;
 import com.wm.lejia.common.pojo.dto.TotalPriceDTO;
 import com.wm.lejia.common.pojo.dto.UserDTO;
 import com.wm.lejia.common.pojo.entity.Banner;
+import com.wm.lejia.common.pojo.entity.BannerUser;
 import com.wm.lejia.common.pojo.entity.City;
 import com.wm.lejia.common.pojo.entity.Province;
 import com.wm.lejia.common.pojo.entity.TotalPrice;
 import com.wm.lejia.common.pojo.entity.User;
 import com.wm.lejia.common.pojo.entity.UserPrice;
+import com.wm.lejia.common.pojo.vo.AppointmentVO;
 import com.wm.lejia.common.pojo.vo.ProvinceVO;
 import com.wm.lejia.common.utils.Result;
 import com.wm.lejia.common.utils.ResultCode;
@@ -107,6 +109,16 @@ public class FallbackPriceHystric implements PriceFeignClient{
 
 	@Override
 	public Result<List<City>> listCityByHome() {
+		return new Result<>(ResultCode.BAD_REQUEST);
+	}
+
+	@Override
+	public Result<?> addBannerUser(BannerUser bannerUser) {
+		return new Result<>(ResultCode.BAD_REQUEST);
+	}
+
+	@Override
+	public Result<List<AppointmentVO>> listBannerUser(Integer userId) {
 		return new Result<>(ResultCode.BAD_REQUEST);
 	}
 

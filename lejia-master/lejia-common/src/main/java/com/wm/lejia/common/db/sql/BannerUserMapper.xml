@@ -142,7 +142,7 @@
   
   
   <!-- tx 活动用户管理页面list 18/4/24 -->
-  <select id="listBannerUser" resultType="com.wm.lejia.common.pojo.dto.BannerUserVO" parameterType="com.wm.lejia.common.pojo.dto.SeaBannerUserDTO">
+  <select id="listBannerUser" resultType="com.wm.lejia.common.pojo.vo.BannerUserVO" parameterType="com.wm.lejia.common.pojo.dto.SeaBannerUserDTO">
   	SELECT
 		bu.banner_user_id AS bannerUserId,
 		bu.banner_id AS bannerId,

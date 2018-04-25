@@ -17,8 +17,9 @@ import com.wm.lejia.common.pojo.dto.LoginDTO;
 import com.wm.lejia.common.pojo.dto.ServicePriceCalculationPriceDTO;
 import com.wm.lejia.common.pojo.dto.TotalPriceDTO;
 import com.wm.lejia.common.pojo.entity.Banner;
-import com.wm.lejia.common.pojo.entity.City;
+import com.wm.lejia.common.pojo.entity.BannerUser;
 import com.wm.lejia.common.pojo.entity.User;
+import com.wm.lejia.common.pojo.vo.AppointmentVO;
 import com.wm.lejia.common.utils.Result;
 import com.wm.lejia.common.utils.ResultCode;
 import com.wm.lejia.common.utils.StringUtils;
@@ -83,19 +84,19 @@ public class HomeController {
 		homeDTO.setUserId(userId);
 		log.info("HomeController   sumPrice ===> user : " + user.toString());
 		Result<HomeDTO> createHomeInfo = priceFeignClient.createHomeInfo(homeDTO);
-		if(createHomeInfo.getCode() != 200) {
+		if (createHomeInfo.getCode() != 200) {
 			return createHomeInfo;
 		}
 		HomeDTO home = createHomeInfo.getData();
 		Integer homeId = home.getHomeId();
-		for(HomeDetailDTO detail : details) {
+		for (HomeDetailDTO detail : details) {
 			detail.setHomeId(homeId);
 			detail.setCreatedBy(userId);
 			dto.setHomeId(homeId);
 			dto.setUserId(userId);
-		}	
+		}
 		details = ServiceUtils.createHomeDetail(homeId, userId, details, dto);
-		for(HomeDetailDTO detail : details) {
+		for (HomeDetailDTO detail : details) {
 			// 选项名字
 			String projectName = detail.getInfo();
 			projectName = (StringUtils.isEmptyStr(projectName) ? "" : projectName.trim());
@@ -104,21 +105,39 @@ public class HomeController {
 			homeDetailType = (StringUtils.isEmptyStr(homeDetailType) ? "" : homeDetailType.trim());
 			// 格式化 homeid
 			Integer formatHomeId = ServiceUtils.formatHomeId(projectName, homeDetailType);
-			if(formatHomeId != null) {
+			if (formatHomeId != null) {
 				detail.setDecorationId(formatHomeId);
 			}
 		}
 		Result<List<HomeDetailDTO>> createHomeDetail = priceFeignClient.createHomeDetail(details);
-		if(createHomeDetail.getCode() != 200) {
+		if (createHomeDetail.getCode() != 200) {
 			return new Result<String>(ResultCode.DATA_UPDATE_ERROR);
 		}
 		dto.setDetails(details);
 		Result<TotalPriceDTO> calculationPrice = priceFeignClient.calculationPrice(dto);
 		return calculationPrice;
 	}
-	
+
 	@PostMapping("/listCityByHome")
-	public Result<List<City>> listCityByHome(){
+	public Result<?> listCityByHome() {
 		return priceFeignClient.listCityByHome();
+	}
+
+	@PostMapping("/addBannerUser")
+	public Result<?> addBannerUser(@RequestBody BannerUser bannerUser) {
+		if (ObjectUtils.isEmpty(bannerUser) || bannerUser.isEmpty()) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		Result<?> addBannerUser = priceFeignClient.addBannerUser(bannerUser);
+		return addBannerUser;
+	}
+	
+	@PostMapping("/listBannerUser")
+	public Result<?> listBannerUser(Integer userId){
+		if(userId == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		Result<List<AppointmentVO>> listBannerUser = priceFeignClient.listBannerUser(userId);
+		return listBannerUser;
 	}
 }

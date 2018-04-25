@@ -8,7 +8,7 @@
     <result column="total" property="total" jdbcType="DOUBLE" />
     <result column="unit_total" property="unitTotal" jdbcType="DOUBLE" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="city_id" property="cityId" jdbcType="INTEGER" />
     <result column="province_id" property="provinceId" jdbcType="INTEGER" />
   </resultMap>
@@ -33,7 +33,7 @@
       )
     values (#{totalPriceId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, 
       #{total,jdbcType=DOUBLE}, #{unitTotal,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER}, 
-      #{source,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}
+      #{source,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wm.lejia.common.pojo.entity.TotalPrice" >
@@ -90,7 +90,7 @@
         #{userId,jdbcType=INTEGER},
       </if>
       <if test="source != null" >
-        #{source,jdbcType=INTEGER},
+        #{source,jdbcType=VARCHAR},
       </if>
       <if test="cityId != null" >
         #{cityId,jdbcType=INTEGER},
@@ -119,7 +119,7 @@
         user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="source != null" >
-        source = #{source,jdbcType=INTEGER},
+        source = #{source,jdbcType=VARCHAR},
       </if>
       <if test="cityId != null" >
         city_id = #{cityId,jdbcType=INTEGER},
@@ -137,9 +137,43 @@
       total = #{total,jdbcType=DOUBLE},
       unit_total = #{unitTotal,jdbcType=DOUBLE},
       user_id = #{userId,jdbcType=INTEGER},
-      source = #{source,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
       city_id = #{cityId,jdbcType=INTEGER},
       province_id = #{provinceId,jdbcType=INTEGER}
     where total_price_id = #{totalPriceId,jdbcType=INTEGER}
   </update>
+  
+  <!-- tx 4/25 算价单列表 -->
+  <select id="listCalculationPrice" resultType="com.wm.lejia.common.pojo.vo.CalculationPriceVO" parameterType="com.wm.lejia.common.pojo.dto.SeaPriceDTO">
+  	SELECT tp.total_price_id AS totalPriceId,u.nickname,u.mobile,tp.source,c.city_name AS cityName,
+  	tp.total,tp.created_time AS createdTime FROM total_price tp 
+	LEFT OUTER JOIN `user` u ON u.user_id = tp.user_id
+	LEFT OUTER JOIN city c ON c.city_id = tp.city_id
+	WHERE 1=1 
+	<if test="nickname != null">
+		AND u.nickname LIKE CONCAT('%',#{nickname},'%')
+	</if>
+	<if test="mobile != null">
+		AND u.mobile LIKE CONCAT('%',#{mobile},'%')
+	</if>
+	<if test="cityName != null">
+		AND c.city_name LIKE CONCAT('%',#{cityName},'%')
+	</if>
+	<if test="cityId != null">
+		AND c.city_id = #{cityId}
+	</if>
+	<if test="priceStart != null">
+		AND tp.total &gt;= #{priceStart}
+	</if>
+	<if test="priceEnd != null">
+		AND tp.total &lt;= #{priceEnd}
+	</if>
+	<if test="createdTimeStart != null">
+		AND tp.created_time &gt;= #{createdTimeStart}
+	</if>
+	<if test="createdTimeEnd != null">
+		AND tp.created_time &lt;= #{createdTimeEnd}
+	</if>
+	ORDER BY tp.created_time DESC
+  </select>
 </mapper>

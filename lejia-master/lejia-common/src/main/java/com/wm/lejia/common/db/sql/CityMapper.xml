@@ -180,4 +180,22 @@
   	</if>
   	LIMIT 1
   </select>
+  
+  <!-- tx 18/4/25 -->
+  <select id="listPriceCity" resultType="com.wm.lejia.common.pojo.vo.PriceCityVO" parameterType="com.wm.lejia.common.pojo.dto.SeaCityDTO">
+  	SELECT c.city_id AS cityId,c.province_id AS provinceId,c.city_name AS cityName,m.manage_id AS manageId,m.nickname,
+  	c.created_time AS createdTime,c.is_up AS isUp FROM city c 
+	LEFT OUTER JOIN manage m ON m.manage_id = c.created_by
+	WHERE 1=1 AND c.is_deleted = 0
+  	<if test="cityName != null">
+  		AND c.city_name = #{cityName,jdbcType=VARCHAR}
+  	</if>
+  	<if test="isDeleted != null">
+  		AND c.is_deleted = #{isDeleted,jdbcType=INTEGER}
+  	</if>
+  	<if test="cityId != null">
+  		AND c.city_id = #{cityId,jdbcType=INTEGER}
+  	</if>
+  	ORDER BY c.created_time DESC
+  </select>
 </mapper>

@@ -7,17 +7,18 @@ import com.wm.lejia.common.pojo.entity.BannerUser;
 import com.wm.lejia.common.pojo.vo.BannerUserVO;
 
 public interface BannerUserMapper {
-    int deleteByPrimaryKey(Integer bannerUserId);
+	int deleteByPrimaryKey(Integer bannerUserId);
 
-    int insert(BannerUser record);
+	int insert(BannerUser record);
 
-    int insertSelective(BannerUser record);
+	int insertSelective(BannerUser record);
 
-    BannerUser selectByPrimaryKey(Integer bannerUserId);
+	BannerUser selectByPrimaryKey(Integer bannerUserId);
 
-    int updateByPrimaryKeySelective(BannerUser record);
+	int updateByPrimaryKeySelective(BannerUser record);
 
-    int updateByPrimaryKey(BannerUser record);
-    
-    List<BannerUserVO> listBannerUser(SeaBannerUserDTO dto);
+	int updateByPrimaryKey(BannerUser record);
+
+	List<BannerUserVO> listBannerUser(SeaBannerUserDTO dto);
+
 }

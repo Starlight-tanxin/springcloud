@@ -15,11 +15,13 @@ import com.wm.lejia.common.pojo.dto.ServicePriceCalculationPriceDTO;
 import com.wm.lejia.common.pojo.dto.TotalPriceDTO;
 import com.wm.lejia.common.pojo.dto.UserDTO;
 import com.wm.lejia.common.pojo.entity.Banner;
+import com.wm.lejia.common.pojo.entity.BannerUser;
 import com.wm.lejia.common.pojo.entity.City;
 import com.wm.lejia.common.pojo.entity.Province;
 import com.wm.lejia.common.pojo.entity.TotalPrice;
 import com.wm.lejia.common.pojo.entity.User;
 import com.wm.lejia.common.pojo.entity.UserPrice;
+import com.wm.lejia.common.pojo.vo.AppointmentVO;
 import com.wm.lejia.common.pojo.vo.ProvinceVO;
 import com.wm.lejia.common.utils.Result;
 import com.wm.lejia.feign.config.FeignConfig;
@@ -79,4 +81,9 @@ public interface PriceFeignClient {
 	@PostMapping(value = "/city/listCityByHome")
 	Result<List<City>> listCityByHome();
 	
+	@PostMapping(value = "/banner/addBannerUser",consumes = "application/json")
+	Result<?> addBannerUser(@RequestBody BannerUser bannerUser);
+	
+	@PostMapping(value = "/banner/listBannerUser")
+	Result<List<AppointmentVO>> listBannerUser(@RequestParam(value = "userId") Integer userId);
 }
