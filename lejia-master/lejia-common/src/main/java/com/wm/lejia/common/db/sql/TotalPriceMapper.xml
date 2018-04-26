@@ -176,4 +176,25 @@
 	</if>
 	ORDER BY tp.created_time DESC
   </select>
+  
+  <!-- tx 18/4/26 -->
+  <select id="listTotalPriceByCondition" resultMap="BaseResultMap" parameterType="com.wm.lejia.common.pojo.dto.SeaTotalPriceDTO"> 
+  	SELECT * FROM total_price WHERE 1=1 
+  	<if test="totalStart != null">
+  		AND total &gt;= #{totalSatrt}
+  	</if>
+  	<if test="totalEnd != null">
+  		AND total &lt;= #{totalEnd}
+  	</if>
+  	<if test="createdTimeStrat != null">
+  		AND created_time &gt;= #{createdTimeStrat}
+  	</if>
+  	<if test="createdTimeEnd != null">
+  		AND created_time &lt;= #{createdTimeEnd}
+  	</if>
+  	<if test="userId != null">
+  		AND user_id = #{userId}
+  	</if>
+  	ORDER BY created_time DESC
+  </select>
 </mapper>

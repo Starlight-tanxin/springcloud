@@ -1,5 +1,9 @@
 package com.wm.lejia.manage.db.mapper;
 
+import java.util.List;
+
+import com.wm.lejia.common.pojo.dto.SeaUserDTO;
+import com.wm.lejia.common.pojo.dto.UserVO;
 import com.wm.lejia.common.pojo.entity.User;
 
 public interface UserMapper {
@@ -14,4 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    List<UserVO> listUserBack(SeaUserDTO dto);
 }

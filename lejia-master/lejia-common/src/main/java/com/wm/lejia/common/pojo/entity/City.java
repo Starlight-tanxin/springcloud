@@ -24,6 +24,8 @@ public class City {
     private Integer updatedBy;
 
     private Date updatedTime;
+    
+    private String describe;
 
     public Integer getCityId() {
         return cityId;
@@ -112,4 +114,21 @@ public class City {
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
     }
+
+	public String getDescribe() {
+		return describe;
+	}
+
+	public void setDescribe(String describe) {
+		this.describe = describe;
+	}
+
+	@Override
+	public String toString() {
+		return "City [cityId=" + cityId + ", cityName=" + cityName + ", cityCode=" + cityCode + ", provinceId="
+				+ provinceId + ", isDeleted=" + isDeleted + ", isUp=" + isUp + ", isDefault=" + isDefault
+				+ ", createdBy=" + createdBy + ", createdTime=" + createdTime + ", updatedBy=" + updatedBy
+				+ ", updatedTime=" + updatedTime + ", describe=" + describe + "]";
+	}
+    
 }

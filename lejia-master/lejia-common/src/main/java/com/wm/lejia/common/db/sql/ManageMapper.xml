@@ -38,6 +38,9 @@
       #{isDeleted,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.wm.lejia.common.pojo.entity.Manage" >
+    <selectKey keyColumn="manage_id" keyProperty="manageId" order="AFTER" resultType="java.lang.Integer">
+    	SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into manage
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="manageId != null" >
@@ -150,4 +153,16 @@
       is_deleted = #{isDeleted,jdbcType=INTEGER}
     where manage_id = #{manageId,jdbcType=INTEGER}
   </update>
+  
+  <!-- tx 18/4/26 -->
+  <select id="listManageByCondition" resultMap="BaseResultMap" parameterType="com.wm.lejia.common.pojo.dto.SeaManageDTO">
+  	SELECT * FROM manage WHERE 1=1 AND is_deleted = 0
+  	<if test="username != null">
+  		AND username LIKE CONCAT('%',#{username},'%')
+  	</if>
+  	<if test="nickname != null">
+  		AND nickname LIKE CONCAT('%',#{nickname},'%')
+  	</if>
+  	ORDER BY created_time DESC
+  </select>
 </mapper>

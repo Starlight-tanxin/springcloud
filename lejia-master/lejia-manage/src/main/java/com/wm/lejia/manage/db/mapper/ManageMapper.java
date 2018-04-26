@@ -1,5 +1,8 @@
 package com.wm.lejia.manage.db.mapper;
 
+import java.util.List;
+
+import com.wm.lejia.common.pojo.dto.SeaManageDTO;
 import com.wm.lejia.common.pojo.entity.Manage;
 
 public interface ManageMapper {
@@ -14,4 +17,6 @@ public interface ManageMapper {
     int updateByPrimaryKeySelective(Manage record);
 
     int updateByPrimaryKey(Manage record);
+    
+    List<Manage> listManageByCondition(SeaManageDTO dto);
 }

@@ -12,6 +12,8 @@ public class UpdatePriceDTO {
 	
 	private Integer updatedBy;
 	
+	private String describe;
+	
 	List<DecorationPrice> prices;
 
 	public Integer getProvinceId() {
@@ -46,11 +48,19 @@ public class UpdatePriceDTO {
 		this.prices = prices;
 	}
 
+	
+	public String getDescribe() {
+		return describe;
+	}
+
+	public void setDescribe(String describe) {
+		this.describe = describe;
+	}
+
 	@Override
 	public String toString() {
 		return "UpdatePriceDTO [provinceId=" + provinceId + ", cityId=" + cityId + ", updatedBy=" + updatedBy
-				+ ", prices=" + prices + "]";
+				+ ", describe=" + describe + ", prices=" + prices + "]";
 	}
-	
-	
+
 }

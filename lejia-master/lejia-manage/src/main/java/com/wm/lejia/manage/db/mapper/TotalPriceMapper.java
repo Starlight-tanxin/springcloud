@@ -3,6 +3,7 @@ package com.wm.lejia.manage.db.mapper;
 import java.util.List;
 
 import com.wm.lejia.common.pojo.dto.SeaPriceDTO;
+import com.wm.lejia.common.pojo.dto.SeaTotalPriceDTO;
 import com.wm.lejia.common.pojo.entity.TotalPrice;
 import com.wm.lejia.common.pojo.vo.CalculationPriceVO;
 
@@ -20,4 +21,6 @@ public interface TotalPriceMapper {
     int updateByPrimaryKey(TotalPrice record);
     
     List<CalculationPriceVO> listCalculationPrice(SeaPriceDTO dto);
+    
+    List<TotalPrice> listTotalPriceByCondition(SeaTotalPriceDTO dto);
 }

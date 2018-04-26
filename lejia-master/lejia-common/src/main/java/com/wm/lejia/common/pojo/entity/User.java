@@ -29,6 +29,8 @@ public class User {
     
     private Integer provinceId;
     
+    private String source;
+    
     public Integer getUserId() {
         return userId;
     }
@@ -133,13 +135,21 @@ public class User {
 		this.provinceId = provinceId;
 	}
 
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", nickname=" + nickname + ", username=" + username + ", password=" + password
 				+ ", wechatOpenid=" + wechatOpenid + ", mobile=" + mobile + ", createdTime=" + createdTime
 				+ ", createdBy=" + createdBy + ", updatedTime=" + updatedTime + ", updatedBy=" + updatedBy
-				+ ", isDeleted=" + isDeleted + ", cityId=" + cityId + ", provinceId=" + provinceId + "]";
+				+ ", isDeleted=" + isDeleted + ", cityId=" + cityId + ", provinceId=" + provinceId + ", source="
+				+ source + "]";
 	}
-    
-    
+
 }

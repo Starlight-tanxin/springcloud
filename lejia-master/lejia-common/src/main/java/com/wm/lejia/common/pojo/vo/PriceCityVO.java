@@ -17,6 +17,7 @@ public class PriceCityVO {
 	private String nickname;
 	private Date createdTime;
 	private Integer isUp;
+	private String describe;
 
 	public Integer getCityId() {
 		return cityId;
@@ -74,10 +75,19 @@ public class PriceCityVO {
 		this.isUp = isUp;
 	}
 
+	public String getDescribe() {
+		return describe;
+	}
+
+	public void setDescribe(String describe) {
+		this.describe = describe;
+	}
+
 	@Override
 	public String toString() {
 		return "PriceCityVO [cityId=" + cityId + ", provinceId=" + provinceId + ", cityName=" + cityName + ", manageId="
-				+ manageId + ", nickname=" + nickname + ", createdTime=" + createdTime + ", isUp=" + isUp + "]";
+				+ manageId + ", nickname=" + nickname + ", createdTime=" + createdTime + ", isUp=" + isUp
+				+ ", describe=" + describe + "]";
 	}
 
 }

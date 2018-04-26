@@ -2,6 +2,7 @@ package com.wm.lejia.manage.service.impl;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import com.github.pagehelper.PageInfo;
 import com.wm.lejia.common.pojo.dto.SeaCityDTO;
 import com.wm.lejia.common.pojo.dto.SeaPriceDTO;
 import com.wm.lejia.common.pojo.dto.UpdatePriceDTO;
+import com.wm.lejia.common.pojo.entity.City;
 import com.wm.lejia.common.pojo.entity.DecorationPrice;
 import com.wm.lejia.common.pojo.vo.CalculationPriceVO;
 import com.wm.lejia.common.pojo.vo.PriceCityVO;
@@ -58,6 +60,15 @@ public class PriceServiceImpl implements PriceService {
 		Integer provinceId = dto.getProvinceId();
 		Integer cityId = dto.getCityId();
 		Integer updatedBy = dto.getUpdatedBy();
+		String describe = dto.getDescribe();
+		if(!StringUtils.isEmptyStr(describe)) {
+			City city = new City();
+			city.setDescribe(describe);
+			city.setUpdatedBy(updatedBy);
+			city.setUpdatedTime(new Date());
+			city.setCityId(cityId);
+			cityMapper.updateByPrimaryKeySelective(city);
+		}
 		// 软删除
 		decorationPriceMapper.updateIsDeletedByCity(provinceId, cityId, updatedBy);
 		for (DecorationPrice dp : dto.getPrices()) {
