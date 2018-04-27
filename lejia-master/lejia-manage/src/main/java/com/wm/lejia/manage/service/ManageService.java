@@ -12,4 +12,5 @@ public interface ManageService {
 	Result<Manage> updateManage(Manage manage);
 	
 	Result<Manage> addManage(Manage manage);
+	
 }

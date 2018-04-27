@@ -172,7 +172,7 @@
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       updated_by = #{updatedBy,jdbcType=INTEGER},
       updated_time = #{updatedTime,jdbcType=TIMESTAMP}
-      describe = #{describe,jdbcTye=VARCHAR},
+      describe = #{describe,jdbcType=VARCHAR},
     where city_id = #{cityId,jdbcType=INTEGER}
   </update>
   

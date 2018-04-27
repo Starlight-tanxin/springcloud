@@ -62,28 +62,34 @@ public interface PriceFeignClient {
 
 	@PostMapping(value = "/user/getUserByWechatOpenid")
 	Result<User> getUserByWechatOpenid(@RequestParam(value = "wechatOpenid") String wechatOpenid);
-	
+
 	@PostMapping(value = "/city/getProvinceAndCity")
 	Result<List<ProvinceVO>> getProvinceAndCity();
-	
+
 	@PostMapping(value = "/city/createProvince", consumes = "application/json")
 	Result<Province> createProvince(@RequestBody Province province);
-	
+
 	@PostMapping(value = "/city/createCity", consumes = "application/json")
 	Result<City> createCity(@RequestBody City city);
-	
+
 	@PostMapping(value = "/banner/listBannerByHome", consumes = "application/json")
 	Result<List<Banner>> listBannerByHome(@RequestBody Banner banner);
-	
+
 	@PostMapping(value = "/user/login", consumes = "application/json")
 	Result<User> login(@RequestBody LoginDTO dto);
-	
+
 	@PostMapping(value = "/city/listCityByHome")
 	Result<List<City>> listCityByHome();
-	
-	@PostMapping(value = "/banner/addBannerUser",consumes = "application/json")
+
+	@PostMapping(value = "/banner/addBannerUser", consumes = "application/json")
 	Result<?> addBannerUser(@RequestBody BannerUser bannerUser);
-	
+
 	@PostMapping(value = "/banner/listBannerUser")
 	Result<List<AppointmentVO>> listBannerUser(@RequestParam(value = "userId") Integer userId);
+
+	@PostMapping(value = "/code/sendSMSCode")
+	Result<?> sendSMSCode(@RequestParam(value = "mobile") String mobile);
+	
+	@PostMapping(value = "/code/verifyMsmCode")
+	Result<?> verifyMsmCode(@RequestParam(value = "mobile") String mobile, @RequestParam("code") String code);
 }

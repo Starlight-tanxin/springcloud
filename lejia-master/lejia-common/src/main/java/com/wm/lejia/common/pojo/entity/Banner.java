@@ -2,164 +2,194 @@ package com.wm.lejia.common.pojo.entity;
 
 import java.util.Date;
 
+import com.wm.lejia.common.utils.StringUtils;
+
 public class Banner {
-    private Integer bannerId;
+	private Integer bannerId;
 
-    private String bannerTitle;
+	private String bannerTitle;
 
-    private String bannerImg;
+	private String bannerImg;
 
-    private Integer idx;
+	private Integer idx;
 
-    private String type;
+	private String type;
 
-    private Integer provinceId;
+	private Integer provinceId;
 
-    private Integer cityId;
+	private Integer cityId;
 
-    private Date createdTime;
+	private Date createdTime;
 
-    private Integer createdBy;
+	private Integer createdBy;
 
-    private Date updatedTime;
+	private Date updatedTime;
 
-    private Integer updatedBy;
+	private Integer updatedBy;
 
-    private Integer isDeleted;
+	private Integer isDeleted;
 
-    private Integer isData;
+	private Integer isData;
 
-    private Integer showType;
+	private Integer showType;
 
-    private String applyPage;
+	private String applyPage;
 
-    private String bannerDetail;
+	private String urlStr;
 
-    public Integer getBannerId() {
-        return bannerId;
-    }
+	private Integer isUp;
 
-    public void setBannerId(Integer bannerId) {
-        this.bannerId = bannerId;
-    }
+	private String bannerDetail;
 
-    public String getBannerTitle() {
-        return bannerTitle;
-    }
+	public Integer getBannerId() {
+		return bannerId;
+	}
 
-    public void setBannerTitle(String bannerTitle) {
-        this.bannerTitle = bannerTitle == null ? null : bannerTitle.trim();
-    }
+	public void setBannerId(Integer bannerId) {
+		this.bannerId = bannerId;
+	}
 
-    public String getBannerImg() {
-        return bannerImg;
-    }
+	public String getBannerTitle() {
+		return bannerTitle;
+	}
 
-    public void setBannerImg(String bannerImg) {
-        this.bannerImg = bannerImg == null ? null : bannerImg.trim();
-    }
+	public void setBannerTitle(String bannerTitle) {
+		this.bannerTitle = bannerTitle == null ? null : bannerTitle.trim();
+	}
 
-    public Integer getIdx() {
-        return idx;
-    }
+	public String getBannerImg() {
+		return bannerImg;
+	}
 
-    public void setIdx(Integer idx) {
-        this.idx = idx;
-    }
+	public void setBannerImg(String bannerImg) {
+		this.bannerImg = bannerImg == null ? null : bannerImg.trim();
+	}
 
-    public String getType() {
-        return type;
-    }
+	public Integer getIdx() {
+		return idx;
+	}
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
+	public void setIdx(Integer idx) {
+		this.idx = idx;
+	}
 
-    public Integer getProvinceId() {
-        return provinceId;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
-    }
+	public void setType(String type) {
+		this.type = type == null ? null : type.trim();
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public Integer getProvinceId() {
+		return provinceId;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
 
-    public Date getCreatedTime() {
-        return createdTime;
-    }
+	public Integer getCityId() {
+		return cityId;
+	}
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
-    public Integer getCreatedBy() {
-        return createdBy;
-    }
+	public Date getCreatedTime() {
+		return createdTime;
+	}
 
-    public void setCreatedBy(Integer createdBy) {
-        this.createdBy = createdBy;
-    }
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
 
-    public Date getUpdatedTime() {
-        return updatedTime;
-    }
+	public Integer getCreatedBy() {
+		return createdBy;
+	}
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
-    }
+	public void setCreatedBy(Integer createdBy) {
+		this.createdBy = createdBy;
+	}
 
-    public Integer getUpdatedBy() {
-        return updatedBy;
-    }
+	public Date getUpdatedTime() {
+		return updatedTime;
+	}
 
-    public void setUpdatedBy(Integer updatedBy) {
-        this.updatedBy = updatedBy;
-    }
+	public void setUpdatedTime(Date updatedTime) {
+		this.updatedTime = updatedTime;
+	}
 
-    public Integer getIsDeleted() {
-        return isDeleted;
-    }
+	public Integer getUpdatedBy() {
+		return updatedBy;
+	}
 
-    public void setIsDeleted(Integer isDeleted) {
-        this.isDeleted = isDeleted;
-    }
+	public void setUpdatedBy(Integer updatedBy) {
+		this.updatedBy = updatedBy;
+	}
 
-    public Integer getIsData() {
-        return isData;
-    }
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
 
-    public void setIsData(Integer isData) {
-        this.isData = isData;
-    }
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
-    public Integer getShowType() {
-        return showType;
-    }
+	public Integer getIsData() {
+		return isData;
+	}
 
-    public void setShowType(Integer showType) {
-        this.showType = showType;
-    }
+	public void setIsData(Integer isData) {
+		this.isData = isData;
+	}
 
-    public String getApplyPage() {
-        return applyPage;
-    }
+	public Integer getShowType() {
+		return showType;
+	}
 
-    public void setApplyPage(String applyPage) {
-        this.applyPage = applyPage == null ? null : applyPage.trim();
-    }
+	public void setShowType(Integer showType) {
+		this.showType = showType;
+	}
 
-    public String getBannerDetail() {
-        return bannerDetail;
-    }
+	public String getApplyPage() {
+		return applyPage;
+	}
 
-    public void setBannerDetail(String bannerDetail) {
-        this.bannerDetail = bannerDetail == null ? null : bannerDetail.trim();
-    }
+	public void setApplyPage(String applyPage) {
+		this.applyPage = applyPage == null ? null : applyPage.trim();
+	}
+
+	public String getUrlStr() {
+		return urlStr;
+	}
+
+	public void setUrlStr(String urlStr) {
+		this.urlStr = urlStr == null ? null : urlStr.trim();
+	}
+
+	public Integer getIsUp() {
+		return isUp;
+	}
+
+	public void setIsUp(Integer isUp) {
+		this.isUp = isUp;
+	}
+
+	public String getBannerDetail() {
+		return bannerDetail;
+	}
+
+	public void setBannerDetail(String bannerDetail) {
+		this.bannerDetail = bannerDetail == null ? null : bannerDetail.trim();
+	}
+
+	public boolean isEmpty() {
+		if (StringUtils.isEmptyStr(applyPage) || StringUtils.isEmptyStr(bannerTitle)
+				|| StringUtils.isEmptyStr(bannerImg) || updatedBy == null) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -140,4 +140,14 @@ public class HomeController {
 		Result<List<AppointmentVO>> listBannerUser = priceFeignClient.listBannerUser(userId);
 		return listBannerUser;
 	}
+	
+	@PostMapping("/sendSMSCode")
+	public Result<?> sendSMSCode(String mobile){
+		return priceFeignClient.sendSMSCode(mobile);
+	}
+	
+	@PostMapping("/verifyMsmCode")
+	Result<?> verifyMsmCode(String mobile, String code){
+		return priceFeignClient.verifyMsmCode(mobile, code);
+	}
 }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -54,6 +55,11 @@ public class ManageServiceImpl implements ManageService {
 	@Override
 	public Result<Manage> addManage(Manage manage) {
 		try {
+			String username = manage.getUsername();
+			Manage m = manageMapper.getManageByUsername(username);
+			if(!ObjectUtils.isEmpty(m)) {
+				return new Result<>(ResultCode.ACCOUNT_Y_EXIST);
+			}
 			manage.setCreatedTime(new Date());
 			manageMapper.insertSelective(manage);
 		} catch (Exception e) {

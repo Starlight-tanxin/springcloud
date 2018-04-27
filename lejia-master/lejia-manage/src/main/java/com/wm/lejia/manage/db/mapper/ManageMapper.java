@@ -2,6 +2,9 @@ package com.wm.lejia.manage.db.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import com.wm.lejia.common.pojo.dto.SeaManageDTO;
 import com.wm.lejia.common.pojo.entity.Manage;
 
@@ -19,4 +22,7 @@ public interface ManageMapper {
     int updateByPrimaryKey(Manage record);
     
     List<Manage> listManageByCondition(SeaManageDTO dto);
+    
+    @Select("SELECT * FROM manage WHERE 1=1 AND username = #{username}")
+    Manage getManageByUsername(@Param("username")String username);
 }

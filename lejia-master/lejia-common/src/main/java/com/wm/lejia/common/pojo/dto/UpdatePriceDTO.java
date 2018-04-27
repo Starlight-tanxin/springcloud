@@ -5,15 +5,15 @@ import java.util.List;
 import com.wm.lejia.common.pojo.entity.DecorationPrice;
 
 public class UpdatePriceDTO {
-	
+
 	private Integer provinceId;
-	
+
 	private Integer cityId;
-	
+
 	private Integer updatedBy;
-	
+
 	private String describe;
-	
+
 	List<DecorationPrice> prices;
 
 	public Integer getProvinceId() {
@@ -48,7 +48,6 @@ public class UpdatePriceDTO {
 		this.prices = prices;
 	}
 
-	
 	public String getDescribe() {
 		return describe;
 	}
@@ -63,4 +62,10 @@ public class UpdatePriceDTO {
 				+ ", describe=" + describe + ", prices=" + prices + "]";
 	}
 
+	public boolean isEmpty() {
+		if (prices == null || prices.size() <= 0 || provinceId == null || cityId == null || updatedBy == null) {
+			return true;
+		}
+		return false;
+	}
 }

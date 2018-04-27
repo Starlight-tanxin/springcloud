@@ -13,11 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wm.lejia.common.pojo.dto.AddCityDTO;
 import com.wm.lejia.common.pojo.dto.DefProvinceDTO;
+import com.wm.lejia.common.pojo.dto.SeaBannerDTO;
+import com.wm.lejia.common.pojo.dto.SeaBannerUserDTO;
+import com.wm.lejia.common.pojo.dto.SeaCityDTO;
+import com.wm.lejia.common.pojo.dto.SeaManageDTO;
+import com.wm.lejia.common.pojo.dto.SeaPriceDTO;
+import com.wm.lejia.common.pojo.dto.SeaTotalPriceDTO;
+import com.wm.lejia.common.pojo.dto.SeaUserDTO;
+import com.wm.lejia.common.pojo.dto.UpdatePriceDTO;
+import com.wm.lejia.common.pojo.entity.Banner;
 import com.wm.lejia.common.pojo.entity.City;
+import com.wm.lejia.common.pojo.entity.Manage;
 import com.wm.lejia.common.pojo.entity.Province;
+import com.wm.lejia.common.pojo.entity.User;
+import com.wm.lejia.common.pojo.entity.UserRemark;
 import com.wm.lejia.common.pojo.vo.CityVO;
 import com.wm.lejia.common.utils.Result;
 import com.wm.lejia.common.utils.ResultCode;
+import com.wm.lejia.common.utils.StringUtils;
+import com.wm.lejia.common.utils.sign.MD5Utils;
 import com.wm.lejia.feign.client.ManageFeignClient;
 
 @RestController
@@ -62,7 +76,7 @@ public class ManageConttroller {
 		Result<?> updateCityResult = manageFeignClient.updateCity(city);
 		return updateCityResult;
 	}
-	
+
 	@PostMapping("/addCity")
 	public Result<?> addCity(@RequestBody AddCityDTO dto) {
 		if (ObjectUtils.isEmpty(dto) || dto.isEmpty()) {
@@ -91,7 +105,7 @@ public class ManageConttroller {
 		Result<Province> getProvince = manageFeignClient.getProvince(p);
 		Province province = getProvince.getData();
 		if (!ObjectUtils.isEmpty(province)) {
-			if(province.getIsDeleted() != 0 || province.getIsUp() != 1) {
+			if (province.getIsDeleted() != 0 || province.getIsUp() != 1) {
 				province.setIsUp(1);
 				province.setIsDeleted(0);
 				province.setIsDefault(dto.getIsDefault());
@@ -105,7 +119,7 @@ public class ManageConttroller {
 			}
 		}
 		Result<Province> createProvince = manageFeignClient.createProvince(province);
-		if(createProvince.getCode() != 200) {
+		if (createProvince.getCode() != 200) {
 			return createProvince;
 		}
 		p = createProvince.getData();
@@ -113,4 +127,145 @@ public class ManageConttroller {
 		Result<City> createCity = manageFeignClient.createCity(c);
 		return createCity;
 	}
+
+	@PostMapping("/listBanner")
+	public Result<?> listBanner(@RequestBody SeaBannerDTO dto) {
+		return manageFeignClient.listBanner(dto);
+	}
+
+	@PostMapping("/addBanner")
+	public Result<?> addBanner(@RequestBody Banner banner) {
+		if (ObjectUtils.isEmpty(banner) || banner.isEmpty()) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		banner.setCreatedBy(banner.getUpdatedBy());
+		banner.setUpdatedBy(null);
+		return manageFeignClient.addBanner(banner);
+	}
+
+	@PostMapping("/updateBanner")
+	public Result<?> updateBanner(@RequestBody Banner banner) {
+		if (ObjectUtils.isEmpty(banner) || banner.getBannerId() == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		return manageFeignClient.updateBanner(banner);
+	}
+
+	@PostMapping("/upBanner")
+	public Result<?> upBanner(@RequestBody Banner banner) {
+		if (ObjectUtils.isEmpty(banner) || banner.getBannerId() == null || banner.getUpdatedBy() == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		banner.setIsUp(1);
+		return manageFeignClient.updateBanner(banner);
+	}
+
+	@PostMapping("/dowmBanner")
+	public Result<?> dowmBanner(@RequestBody Banner banner) {
+		if (ObjectUtils.isEmpty(banner) || banner.getBannerId() == null || banner.getUpdatedBy() == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		banner.setIsUp(0);
+		return manageFeignClient.updateBanner(banner);
+	}
+
+	@PostMapping("/listBannerUser")
+	public Result<?> listBannerUser(@RequestBody SeaBannerUserDTO dto) {
+		return manageFeignClient.listBannerUser(dto);
+	}
+
+	@PostMapping("/updatePriceSetting")
+	public Result<?> updatePriceSetting(@RequestBody UpdatePriceDTO dto) {
+		if (ObjectUtils.isEmpty(dto) || dto.isEmpty()) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		return manageFeignClient.updatePriceSetting(dto);
+	}
+
+	@PostMapping("/listCityPrice")
+	public Result<?> listCity(@RequestBody SeaCityDTO dto) {
+		return manageFeignClient.listCity(dto);
+	}
+
+	@PostMapping("/listCalculationPrice")
+	public Result<?> listCalculationPrice(@RequestBody SeaPriceDTO dto) {
+		return manageFeignClient.listCalculationPrice(dto);
+	}
+
+	@PostMapping("/listPriceByCity")
+	public Result<?> listPriceByCity(Integer provinceId, Integer cityId) {
+		if (provinceId == null || cityId == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		return manageFeignClient.listPriceByCity(provinceId, cityId);
+	}
+
+	@PostMapping("/manage/user/listUserBackByCondition")
+	public Result<?> listUserBackByCondition(@RequestBody SeaUserDTO dto) {
+		return manageFeignClient.listUserBackByCondition(dto);
+	}
+
+	@PostMapping("/listUserRemark")
+	public Result<?> listUserRemark(Integer userId) {
+		if (userId == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		return manageFeignClient.listUserRemark(userId);
+	}
+
+	@PostMapping("/listTotalPriceByCondition")
+	public Result<?> listTotalPriceByCondition(@RequestBody SeaTotalPriceDTO dto) {
+		if (ObjectUtils.isEmpty(dto) || dto.getUserId() == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		return manageFeignClient.listTotalPriceByCondition(dto);
+	}
+
+	@PostMapping("/updateUser")
+	public Result<?> updateUser(@RequestBody User user){
+		if(ObjectUtils.isEmpty(user) || user.getUserId() == null || user.getUpdatedBy() == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		return manageFeignClient.updateUser(user);
+	}
+
+	@PostMapping("/addUserRemark")
+	public Result<?> addUserRemark(@RequestBody UserRemark userRemark) {
+		if (ObjectUtils.isEmpty(userRemark) || userRemark.getUserId() == null
+				|| StringUtils.isEmptyStr(userRemark.getContent()) || userRemark.getCreatedBy() == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		return manageFeignClient.addUserRemark(userRemark);
+	}
+
+	@PostMapping("/listManageByCondition")
+	public Result<?> listManageByCondition(@RequestBody SeaManageDTO dto) {
+		return manageFeignClient.listManageByCondition(dto);
+	}
+
+	@PostMapping("/updateManage")
+	public Result<?> updateManage(@RequestBody Manage manage) {
+		if (ObjectUtils.isEmpty(manage) || manage.getManageId() == null || manage.getUpdatedBy() == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		String pwd = manage.getPassword();
+		if (!StringUtils.isEmptyStr(pwd)) {
+			manage.setPassword(MD5Utils.MD5Encode(pwd, "UTF-8"));
+		}
+		return manageFeignClient.updateManage(manage);
+	}
+
+	@PostMapping("/addManage")
+	public Result<?> addManage(@RequestBody Manage manage) {
+		if (ObjectUtils.isEmpty(manage) || StringUtils.isEmptyStr(manage.getUsername())
+				|| StringUtils.isEmptyStr(manage.getPassword()) || manage.getUpdatedBy() == null) {
+			return new Result<>(ResultCode.PARAM_LOSS);
+		}
+		String pwd = manage.getPassword();
+		if (!StringUtils.isEmptyStr(pwd)) {
+			manage.setPassword(MD5Utils.MD5Encode(pwd, "UTF-8"));
+		}
+		return manageFeignClient.updateManage(manage);
+	}
+
 }

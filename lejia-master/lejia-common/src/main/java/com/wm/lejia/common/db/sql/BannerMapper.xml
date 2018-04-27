@@ -17,6 +17,7 @@
     <result column="is_data" property="isData" jdbcType="INTEGER" />
     <result column="show_type" property="showType" jdbcType="INTEGER" />
     <result column="apply_page" property="applyPage" jdbcType="VARCHAR" />
+    <result column="url_str" property="urlStr" jdbcType="VARCHAR" />
     <result column="is_up" property="isUp" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.wm.lejia.common.pojo.entity.Banner" extends="BaseResultMap" >
@@ -25,7 +26,7 @@
   <sql id="Base_Column_List" >
     banner_id, banner_title, banner_img, idx, type, province_id, city_id, created_time, 
     created_by, updated_time, updated_by, is_deleted, is_data, show_type, apply_page, 
-    is_up
+    url_str, is_up
   </sql>
   <sql id="Blob_Column_List" >
     banner_detail
@@ -48,13 +49,15 @@
       city_id, created_time, created_by, 
       updated_time, updated_by, is_deleted, 
       is_data, show_type, apply_page, 
-      is_up, banner_detail)
+      url_str, is_up, banner_detail
+      )
     values (#{bannerId,jdbcType=INTEGER}, #{bannerTitle,jdbcType=VARCHAR}, #{bannerImg,jdbcType=VARCHAR}, 
       #{idx,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{provinceId,jdbcType=INTEGER}, 
       #{cityId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, 
       #{updatedTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=INTEGER}, #{isDeleted,jdbcType=INTEGER}, 
       #{isData,jdbcType=INTEGER}, #{showType,jdbcType=INTEGER}, #{applyPage,jdbcType=VARCHAR}, 
-      #{isUp,jdbcType=INTEGER}, #{bannerDetail,jdbcType=LONGVARCHAR})
+      #{urlStr,jdbcType=VARCHAR}, #{isUp,jdbcType=INTEGER}, #{bannerDetail,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.wm.lejia.common.pojo.entity.Banner" >
     <selectKey keyColumn="banner_id" keyProperty="bannerId" order="AFTER" resultType="java.lang.Integer">
@@ -106,6 +109,9 @@
       </if>
       <if test="applyPage != null" >
         apply_page,
+      </if>
+      <if test="urlStr != null" >
+        url_str,
       </if>
       <if test="isUp != null" >
         is_up,
@@ -160,6 +166,9 @@
       <if test="applyPage != null" >
         #{applyPage,jdbcType=VARCHAR},
       </if>
+      <if test="urlStr != null" >
+        #{urlStr,jdbcType=VARCHAR},
+      </if>
       <if test="isUp != null" >
         #{isUp,jdbcType=INTEGER},
       </if>
@@ -213,6 +222,9 @@
       <if test="applyPage != null" >
         apply_page = #{applyPage,jdbcType=VARCHAR},
       </if>
+      <if test="urlStr != null" >
+        url_str = #{urlStr,jdbcType=VARCHAR},
+      </if>
       <if test="isUp != null" >
         is_up = #{isUp,jdbcType=INTEGER},
       </if>
@@ -238,6 +250,7 @@
       is_data = #{isData,jdbcType=INTEGER},
       show_type = #{showType,jdbcType=INTEGER},
       apply_page = #{applyPage,jdbcType=VARCHAR},
+      url_str = #{urlStr,jdbcType=VARCHAR},
       is_up = #{isUp,jdbcType=INTEGER},
       banner_detail = #{bannerDetail,jdbcType=LONGVARCHAR}
     where banner_id = #{bannerId,jdbcType=INTEGER}
@@ -258,6 +271,7 @@
       is_data = #{isData,jdbcType=INTEGER},
       show_type = #{showType,jdbcType=INTEGER},
       apply_page = #{applyPage,jdbcType=VARCHAR},
+      url_str = #{urlStr,jdbcType=VARCHAR},
       is_up = #{isUp,jdbcType=INTEGER}
     where banner_id = #{bannerId,jdbcType=INTEGER}
   </update>

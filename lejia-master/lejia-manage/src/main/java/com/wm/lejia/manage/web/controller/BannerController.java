@@ -53,7 +53,9 @@ public class BannerController {
 	}
 	
 	@PostMapping("/listBannerUser")
-	Result<PageInfo<BannerUserVO>> listBannerUser(@RequestBody SeaBannerUserDTO dto){
+	public Result<PageInfo<BannerUserVO>> listBannerUser(@RequestBody SeaBannerUserDTO dto){
 		return bannerService.listBannerUser(dto);
 	}
+	
+	
 }

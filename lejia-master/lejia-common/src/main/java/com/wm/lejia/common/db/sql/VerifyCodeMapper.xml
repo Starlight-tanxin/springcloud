@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wm.lejia.db.mapper.VerifyCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.common.pojo.entity.VerifyCode" >
+    <id column="verify_code_id" property="verifyCodeId" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="CHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    verify_code_id, mobile, code, created_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from verify_code
+    where verify_code_id = #{verifyCodeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from verify_code
+    where verify_code_id = #{verifyCodeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wm.lejia.common.pojo.entity.VerifyCode" >
+    insert into verify_code (verify_code_id, mobile, code, 
+      created_time)
+    values (#{verifyCodeId,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{code,jdbcType=CHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wm.lejia.common.pojo.entity.VerifyCode" >
+    insert into verify_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="verifyCodeId != null" >
+        verify_code_id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="verifyCodeId != null" >
+        #{verifyCodeId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.common.pojo.entity.VerifyCode" >
+    update verify_code
+    <set >
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=CHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where verify_code_id = #{verifyCodeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.common.pojo.entity.VerifyCode" >
+    update verify_code
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      code = #{code,jdbcType=CHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where verify_code_id = #{verifyCodeId,jdbcType=INTEGER}
+  </update>
+</mapper>

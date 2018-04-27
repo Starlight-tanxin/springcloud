@@ -17,6 +17,7 @@ public enum ResultCode {
 	NOT_PERMISSION(504,"没有权限"),
 	/** 未知错误 */
 	UNKNOWN_ERROR(512,"未知错误"),
+	FALL_BACK_ERROR(513,"Hystric"),
 	/** 普通错误 */
 	BAD_REQUEST(400,"普通错误"),
 	/** 不能修改 */
@@ -39,6 +40,8 @@ public enum ResultCode {
 	PARAM_LOSS(410,"参数丢失"),
 	/** 签名错误 */
 	SIGN_ERROR(411,"签名错误"),
+	/** 验证码发送失败 */
+	MSM_CODE_SEND_ERROR(412,"短信验证码发送失败"),
 	/** 该账号未注册 */
 	ACCOUNT_NOT_REG(413,"该账号未注册"),
 	/** 验证码错误 */

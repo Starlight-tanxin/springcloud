@@ -122,5 +122,15 @@ public class FallbackPriceHystric implements PriceFeignClient{
 		return new Result<>(ResultCode.BAD_REQUEST);
 	}
 
+	@Override
+	public Result<?> sendSMSCode(String mobile) {
+		return new Result<>(ResultCode.BAD_REQUEST);
+	}
+
+	@Override
+	public Result<?> verifyMsmCode(String mobile, String code) {
+		return new Result<>(ResultCode.BAD_REQUEST);
+	}
+
 	
 }
