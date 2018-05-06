@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wm.lejia.db.mapper.BannerUserMapper" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.pojo.entity.BannerUser" >
+    <id column="banner_user_id" property="bannerUserId" jdbcType="INTEGER" />
+    <result column="banner_id" property="bannerId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="wechat_openid" property="wechatOpenid" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    banner_user_id, banner_id, user_id, nickname, mobile, wechat_openid, city_id, province_id, 
+    created_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from banner_user
+    where banner_user_id = #{bannerUserId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from banner_user
+    where banner_user_id = #{bannerUserId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wm.lejia.pojo.entity.BannerUser" >
+    insert into banner_user (banner_user_id, banner_id, user_id, 
+      nickname, mobile, wechat_openid, 
+      city_id, province_id, created_time
+      )
+    values (#{bannerUserId,jdbcType=INTEGER}, #{bannerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{wechatOpenid,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.BannerUser" >
+    insert into banner_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bannerUserId != null" >
+        banner_user_id,
+      </if>
+      <if test="bannerId != null" >
+        banner_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="wechatOpenid != null" >
+        wechat_openid,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bannerUserId != null" >
+        #{bannerUserId,jdbcType=INTEGER},
+      </if>
+      <if test="bannerId != null" >
+        #{bannerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatOpenid != null" >
+        #{wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.pojo.entity.BannerUser" >
+    update banner_user
+    <set >
+      <if test="bannerId != null" >
+        banner_id = #{bannerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatOpenid != null" >
+        wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where banner_user_id = #{bannerUserId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.pojo.entity.BannerUser" >
+    update banner_user
+    set banner_id = #{bannerId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where banner_user_id = #{bannerUserId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- tx 活动用户管理页面list 18/4/24 -->
+  <select id="listBannerUser" resultType="com.wm.lejia.pojo.vo.BannerUserVO" parameterType="com.wm.lejia.pojo.dto.SeaBannerUserDTO">
+  	SELECT
+		bu.banner_user_id AS bannerUserId,
+		bu.banner_id AS bannerId,
+		bu.user_id AS userId,
+		bu.nickname,
+		bu.mobile,
+		b.banner_title AS bannerTitle,
+		c.city_name AS cityName,
+		c.city_id AS cityId,
+		b.apply_page AS applyPage,
+		bu.created_time AS createdTime,
+		(
+			SELECT ur.content FROM user_remark ur
+			WHERE ur.user_id = u.user_id 
+			ORDER BY created_time DESC LIMIT 1
+		) AS remark
+	FROM
+		banner_user bu
+	LEFT OUTER JOIN `user` u ON u.user_id = bu.user_id
+	LEFT OUTER JOIN `banner` b ON b.banner_id = bu.banner_id
+	LEFT OUTER JOIN city c ON c.city_id = bu.city_id
+	<if test="nickname != null">
+		AND bu.nickname LIKE CONCAT('%',#{nickname},'%')
+	</if>
+	<if test="mobile != null">
+		AND bu.mobile LIKE CONCAT('%',#{mobile},'%')
+	</if>
+	<if test="bannerTitle != null">
+		AND bu.banner_title LIKE CONCAT('%',#{bannerTitle},'%')
+	</if>
+	<if test="cityName != null">
+		AND c.city_name LIKE CONCAT('%',#{cityName},'%') 
+	</if>
+	<if test="cityId != null">
+		AND bu.city_id = #{cityId}
+	</if>
+	ORDER BY
+		bu.created_time DESC
+  </select>
+</mapper>

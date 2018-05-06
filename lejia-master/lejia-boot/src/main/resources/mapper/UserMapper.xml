@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wm.lejia.db.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.pojo.entity.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="wechat_openid" property="wechatOpenid" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="INTEGER" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, nickname, username, password, wechat_openid, mobile, created_time, created_by, 
+    updated_time, updated_by, is_deleted, city_id, province_id, source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wm.lejia.pojo.entity.User" >
+    insert into user (user_id, nickname, username, 
+      password, wechat_openid, mobile, 
+      created_time, created_by, updated_time, 
+      updated_by, is_deleted, city_id, 
+      province_id, source)
+    values (#{userId,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=CHAR}, #{wechatOpenid,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=INTEGER}, #{isDeleted,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, 
+      #{provinceId,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.User" >
+    <selectKey keyColumn="user_id" keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+    	SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="wechatOpenid != null" >
+        wechat_openid,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="wechatOpenid != null" >
+        #{wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.pojo.entity.User" >
+    update user
+    <set >
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="wechatOpenid != null" >
+        wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.pojo.entity.User" >
+    update user
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=CHAR},
+      wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- tx 18/4/23 -->
+  <select id="getUserByMobileOROpenid" parameterType="com.wm.lejia.pojo.dto.UserDTO" resultMap="BaseResultMap">
+  	SELECT * FROM `user` WHERE 1=1 
+  	<if test="mobile != null and wechatOpenid != null">
+		AND (mobile = #{mobile} OR wechat_openid = #{wechatOpenid})	  	
+  	</if>
+  </select>
+  	
+  <select id="getUserByCondition" parameterType="com.wm.lejia.pojo.dto.UserDTO" resultMap="BaseResultMap">
+  	SELECT * FROM `user` WHERE 1=1 
+  	<if test="mobile != null">
+		AND mobile = #{mobile} 	
+  	</if>
+  	<if test="wechatOpenid != null">
+  		AND wechat_openid = #{wechatOpenid}	  
+  	</if>
+  	<if test="userId != null">
+  		AND user_id = #{userId}	  
+  	</if>
+  </select>
+  
+  <!-- tx 18/4/26 -->
+  <select id="listUserBack" parameterType="com.wm.lejia.pojo.dto.SeaUserDTO" resultType="com.wm.lejia.pojo.dto.UserVO">
+	SELECT
+		u.user_id AS userId,
+		u.nickname,
+		u.mobile,
+		u.city_id AS cityId,
+		u.province_id AS provinceId,
+		c.city_name AS cityName,
+		u.created_time AS createdTime,
+		u.source,
+		(
+			SELECT tp.total FROM total_price tp
+			WHERE tp.user_id = u.user_id
+			ORDER BY tp.created_time DESC LIMIT 1
+		) AS total,
+		(
+			SELECT ur.content FROM user_remark ur
+			WHERE ur.user_id = u.user_id 
+			ORDER BY ur.created_time DESC LIMIT 1
+		) AS remarkContent
+	FROM
+		`user` u
+	LEFT OUTER JOIN city c ON c.city_id = u.city_id
+	WHERE 1=1 AND u.is_deleted = 0
+	<if test="nickname != null">
+		AND u.nickname LIKE CONCAT('%',#{nickname},'%') 
+	</if>
+	<if test="mobile != null">
+		AND u.mobile LIKE CONCAT('%',#{mobile},'%') 
+	</if>
+	<if test="cityName != null">
+		AND c.city_name LIKE CONCAT('%',#{cityName},'%') 
+	</if>
+	<if test="cityId != null">
+		AND u.city_id = #{cityId}
+	</if>
+	<if test="source != null">
+		AND u.source = #{source}
+	</if>
+	ORDER BY
+		u.created_time DESC
+  </select>
+</mapper>

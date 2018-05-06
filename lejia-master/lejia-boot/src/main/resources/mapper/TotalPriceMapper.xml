@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wm.lejia.db.mapper.TotalPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.wm.lejia.pojo.entity.TotalPrice" >
+    <id column="total_price_id" property="totalPriceId" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="DOUBLE" />
+    <result column="unit_total" property="unitTotal" jdbcType="DOUBLE" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    total_price_id, created_time, created_by, total, unit_total, user_id, source, city_id, 
+    province_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from total_price
+    where total_price_id = #{totalPriceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from total_price
+    where total_price_id = #{totalPriceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wm.lejia.pojo.entity.TotalPrice" >
+    insert into total_price (total_price_id, created_time, created_by, 
+      total, unit_total, user_id, 
+      source, city_id, province_id
+      )
+    values (#{totalPriceId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, 
+      #{total,jdbcType=DOUBLE}, #{unitTotal,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER}, 
+      #{source,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wm.lejia.pojo.entity.TotalPrice" >
+    <selectKey keyColumn="total_price_id" keyProperty="totalPriceId" order="AFTER" resultType="java.lang.Integer">
+  		SELECT LAST_INSERT_ID()
+  	</selectKey>
+    insert into total_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="totalPriceId != null" >
+        total_price_id,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="unitTotal != null" >
+        unit_total,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="totalPriceId != null" >
+        #{totalPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=DOUBLE},
+      </if>
+      <if test="unitTotal != null" >
+        #{unitTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wm.lejia.pojo.entity.TotalPrice" >
+    update total_price
+    <set >
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=DOUBLE},
+      </if>
+      <if test="unitTotal != null" >
+        unit_total = #{unitTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where total_price_id = #{totalPriceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wm.lejia.pojo.entity.TotalPrice" >
+    update total_price
+    set created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      total = #{total,jdbcType=DOUBLE},
+      unit_total = #{unitTotal,jdbcType=DOUBLE},
+      user_id = #{userId,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER}
+    where total_price_id = #{totalPriceId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- tx 4/25 算价单列表 -->
+  <select id="listCalculationPrice" resultType="com.wm.lejia.pojo.vo.CalculationPriceVO" parameterType="com.wm.lejia.pojo.dto.SeaPriceDTO">
+  	SELECT tp.total_price_id AS totalPriceId,u.nickname,u.mobile,tp.source,c.city_name AS cityName,
+  	tp.total,tp.created_time AS createdTime FROM total_price tp 
+	LEFT OUTER JOIN `user` u ON u.user_id = tp.user_id
+	LEFT OUTER JOIN city c ON c.city_id = tp.city_id
+	WHERE 1=1 
+	<if test="nickname != null">
+		AND u.nickname LIKE CONCAT('%',#{nickname},'%')
+	</if>
+	<if test="mobile != null">
+		AND u.mobile LIKE CONCAT('%',#{mobile},'%')
+	</if>
+	<if test="cityName != null">
+		AND c.city_name LIKE CONCAT('%',#{cityName},'%')
+	</if>
+	<if test="cityId != null">
+		AND c.city_id = #{cityId}
+	</if>
+	<if test="priceStart != null">
+		AND tp.total &gt;= #{priceStart}
+	</if>
+	<if test="priceEnd != null">
+		AND tp.total &lt;= #{priceEnd}
+	</if>
+	<if test="createdTimeStart != null">
+		AND tp.created_time &gt;= #{createdTimeStart}
+	</if>
+	<if test="createdTimeEnd != null">
+		AND tp.created_time &lt;= #{createdTimeEnd}
+	</if>
+	ORDER BY tp.created_time DESC
+  </select>
+  
+  <!-- tx 18/4/26 -->
+  <select id="listTotalPriceByCondition" resultMap="BaseResultMap" parameterType="com.wm.lejia.pojo.dto.SeaTotalPriceDTO"> 
+  	SELECT * FROM total_price WHERE 1=1 
+  	<if test="totalStart != null">
+  		AND total &gt;= #{totalSatrt}
+  	</if>
+  	<if test="totalEnd != null">
+  		AND total &lt;= #{totalEnd}
+  	</if>
+  	<if test="createdTimeStrat != null">
+  		AND created_time &gt;= #{createdTimeStrat}
+  	</if>
+  	<if test="createdTimeEnd != null">
+  		AND created_time &lt;= #{createdTimeEnd}
+  	</if>
+  	<if test="userId != null">
+  		AND user_id = #{userId}
+  	</if>
+  	ORDER BY created_time DESC
+  </select>
+</mapper>

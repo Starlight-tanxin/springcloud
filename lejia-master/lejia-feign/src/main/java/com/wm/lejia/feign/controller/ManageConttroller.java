@@ -118,7 +118,7 @@ public class ManageConttroller {
 				}
 			}
 		}
-		Result<Province> createProvince = manageFeignClient.createProvince(province);
+		Result<Province> createProvince = manageFeignClient.createProvince(p);
 		if (createProvince.getCode() != 200) {
 			return createProvince;
 		}
@@ -200,7 +200,7 @@ public class ManageConttroller {
 		return manageFeignClient.listPriceByCity(provinceId, cityId);
 	}
 
-	@PostMapping("/manage/user/listUserBackByCondition")
+	@PostMapping("/listUserBackByCondition")
 	public Result<?> listUserBackByCondition(@RequestBody SeaUserDTO dto) {
 		return manageFeignClient.listUserBackByCondition(dto);
 	}

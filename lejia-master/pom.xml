@@ -12,6 +12,7 @@
 		<module>lejia-price</module>
 		<module>lejia-feign</module>
 		<module>lejia-manage</module>
+		<module>lejia-boot</module>
 	</modules>
 
 	<properties>
