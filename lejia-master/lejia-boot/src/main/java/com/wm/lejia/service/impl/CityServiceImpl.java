@@ -56,7 +56,7 @@ public class CityServiceImpl implements CityService {
 	@Override
 	public Province createProvince(Province province) {
 		try {
-			if(province.getIsDefault() == 1) {
+			if(province.getIsDefault() != null && province.getIsDefault() == 1) {
 				provinceMapper.updateDefault();
 			}
 			province.setCreatedTime(new Date());
@@ -74,7 +74,7 @@ public class CityServiceImpl implements CityService {
 	@Override
 	public City createCity(City city) {
 		try {
-			if(city.getIsDefault() == 1) {
+			if(city.getIsDefault() != null && city.getIsDefault() == 1) {
 				cityMapper.updateDefault();
 			}
 			city.setCreatedTime(new Date());
@@ -134,7 +134,7 @@ public class CityServiceImpl implements CityService {
 	public int updateCity(City city) {
 		int rows = 0;
 		 try {
-			if (city.getIsDefault() == 1) {
+			if (city.getIsDefault() != null && city.getIsDefault() == 1) {
 				cityMapper.updateDefault();
 			}
 			city.setUpdatedTime(new Date());
@@ -150,7 +150,7 @@ public class CityServiceImpl implements CityService {
 	public int updateProvince(Province province) {
 		int rows = 0;
 		try {
-			if(province.getIsDefault() == 1) {
+			if(province.getIsDefault() != null && province.getIsDefault() == 1) {
 				provinceMapper.updateDefault();
 			}
 			province.setUpdatedTime(new Date());

@@ -1,5 +1,7 @@
 package com.wm.lejia.pojo.vo;
 
+import java.util.Date;
+
 public class BannerUserVO {
 	private Integer bannerUserId;
 
@@ -20,6 +22,8 @@ public class BannerUserVO {
 	private String applyPage;
 
 	private String remark;
+	
+	private Date createdTime;
 
 	public Integer getBannerUserId() {
 		return bannerUserId;
@@ -101,11 +105,20 @@ public class BannerUserVO {
 		this.remark = remark;
 	}
 
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+
 	@Override
 	public String toString() {
 		return "BannerUserVO [bannerUserId=" + bannerUserId + ", bannerId=" + bannerId + ", userId=" + userId
 				+ ", nickname=" + nickname + ", mobile=" + mobile + ", bannerTitle=" + bannerTitle + ", cityName="
-				+ cityName + ", cityId=" + cityId + ", applyPage=" + applyPage + ", remark=" + remark + "]";
+				+ cityName + ", cityId=" + cityId + ", applyPage=" + applyPage + ", remark=" + remark + ", createdTime="
+				+ createdTime + "]";
 	}
 
 }
